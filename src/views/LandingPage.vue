@@ -1,18 +1,10 @@
-<!-- <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template> -->
 
 <script>
   import axios from 'axios';
 
 export default {
-  name: 'HomeView',
+  name: 'LandingPage',
   data() {
     return {
       jsonData: null,
@@ -47,7 +39,6 @@ export default {
         </div>
       </div>
       <div class="nav">
-        <a href="/welcome">Welcome</a>
         <a>Home</a>
         <a>Lips</a>
         <a>Sets</a>
@@ -57,62 +48,48 @@ export default {
 
     <div class="content">
     
-      <div class="hero-div">
-        <img class="hero-img" src="../../assets/css/images/hero-image.jpg">
-        <!-- <img class="hero-img" src="../../assets/css/images/hero-im.jpg"> -->
-      </div>
-      <div class="best">
-        <h3 class="bestselling"> Discover our Bestselling Products</h3>
-      </div>
      
       <div class="bestselling-products">
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <img class="bestselling-shampoo" src="../assets/css/images/lipSet.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/daphne.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <img class="bestselling-shampoo" src="../assets/css/images/lipSets.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/cafe-gourmand.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <img class="bestselling-shampoo" src="../assets/css/images/set.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/frambroise.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <img class="bestselling-shampoo" src="../assets/css/images/brush.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/rosier.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <img class="bestselling-shampoo" src="../assets/css/images/cafe-gourmand.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/nude-pencils.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <img class="bestselling-shampoo" src="../assets/css/images/nude-and-red.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
         </div>
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../assets/css/images/frambroise.jpg">
+            <!-- <div class="bestselling-text">Product name</div>
+            <div class="bestselling-text">Price</div> -->
+        </div>
+        
     </div>
 
       <div>
-        <div class="quote-div">
-          <div class="qdiv">
-            <img class="quote" src="../../assets/css/images/quote.jpg">
-          </div>
-          <div class="about-us"><button class="btn-about-us">About us</button></div>
-          <p> Get <span class="discount">10% off </span> your first purchase </p>
-        </div>
-        <!-- <p> Get <span>10% off </span> your first purchase </p> -->
-        <div class="feedback">
-          <i class="fa fa-user"></i>
-          <p>  a Mousse de Rouge, our signature product with a creamy texture and velvet finish, 
-          accompanied by our double-ended Lip Brush.</p>
-          <img src="../../assets/css/images/nude-and-red.jpg">
-        </div>
+       
         <div class="newsletter">
           <p> Stay in touch to join our newsletter 
           <br>  Enter your email:
@@ -187,14 +164,7 @@ export default {
     object-fit: cover;
   }
 
-  .qdiv{
-    width: 100%;
-  }
-
-  .quote{
-    width: 100%;
-    object-fit: contain;
-  }
+  
 
   .body,
   .header,
@@ -231,55 +201,35 @@ export default {
   .bestselling {
     background-color: #EFE7DA;
     text-align: center;
-    height: 40px;
+    height: 100%;
     padding-top: 14px;
     margin-bottom: 0;
   }
 
+  .bestselling-details{
+    width: 100%;
+    height: 100%;
+  }
+
   .bestselling-products {
     display: flex;
-    padding-left: 57px;
-    padding-right: 57px;
-    column-gap: 120px;
+    padding: 40px;
+    /* padding-left: 57px;
+    padding-right: 57px; */
+    column-gap: 100px;
     margin-bottom: 30px;
     white-space: nowrap; 
-    overflow: scroll
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
 }
 
 .bestselling-shampoo {
-    width: 272px;
-    height: 270px;
+    width: 250px;
+    height: 100%;
     
 }
-
-  .quote-div {
-    position: relative;
-  }
-
   
-
-  .about-us {
-    position: absolute;
-    top: 60%;
-    left: 85%;
-  }
-
-  .btn-about-us {
-    width: 150px;
-    border-radius: 30px;
-    background-color: #EFE7DA;
-    padding: 10px;
-    border: 2px solid #EFE7DA;
-  }
-
-  .quote-div p {
-    margin-top: 15px;
-    background-color: black;
-    color: white;
-    height: 35px;
-    text-align: center;
-    padding-top: 8px;
-  }
 
   .discount {
     font-size: 20px;
