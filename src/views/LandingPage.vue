@@ -39,8 +39,9 @@ export default {
         </div>
       </div>
       <div class="nav">
-        <a>Home</a>
-        <a>Lips</a>
+        <a  href="/welcome">Welcome</a>
+        <a href="/">Home</a>
+        <a  href="/lips">Lips</a>
         <a>Sets</a>
         <a>About Us</a>
       </div>
@@ -171,6 +172,7 @@ export default {
   .nav {
     width: 100%;
     background-color: #F6F5EC;
+    padding: 10px;
   }
 
   .header {
@@ -184,7 +186,21 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 30px;
+  }
+
+  .nav a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav a:hover {
+   text-decoration: underline;
+  }
+
+  .nav a:active {
+    color: red;
   }
 
   .header-icons {
@@ -217,16 +233,15 @@ export default {
     /* padding-left: 57px;
     padding-right: 57px; */
     column-gap: 100px;
-    margin-bottom: 30px;
     white-space: nowrap; 
-    overflow: scroll;
+    overflow-y: hidden;
     height: 100%;
     width: 100%;
 }
 
 .bestselling-shampoo {
-    width: 250px;
-    height: 100%;
+    width: 300px;
+    height: 400px;
     
 }
   

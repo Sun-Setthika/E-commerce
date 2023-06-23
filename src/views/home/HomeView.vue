@@ -48,8 +48,8 @@ export default {
       </div>
       <div class="nav">
         <a href="/welcome">Welcome</a>
-        <a>Home</a>
-        <a>Lips</a>
+        <a >Home</a>
+        <a  href="/lips">Lips</a>
         <a>Sets</a>
         <a>About Us</a>
       </div>
@@ -245,11 +245,12 @@ export default {
     white-space: nowrap; 
     overflow: scroll
 }
+  
 
 .bestselling-shampoo {
     width: 272px;
-    height: 270px;
-    
+    /* height: 270px; */
+    height: 100%;
 }
 
   .quote-div {

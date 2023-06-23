@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
 import LandingPage from '../views/LandingPage.vue'
+import LipCategory from '../views/LipCategory.vue'
 import Signup from '../views/Signup.vue'
 import AboutView from '../views/AboutView.vue'
 
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/signup',
       name: 'Signup',
       component: () => import('../views/Signup.vue')
+    },
+    {
+      path: '/lips',
+      name: 'LipCategory',
+      component: LipCategory
     }
   ]
 })
