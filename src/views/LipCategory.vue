@@ -51,9 +51,13 @@ export default {
       </div>
       <div class="nav">
         <a href="/welcome">Welcome</a>
+        <p class="dot">&#183;</p>
         <a href="/">Home</a>
+        <p class="dot">&#183;</p>
         <a href="/lips">Lips</a>
+        <p class="dot">&#183;</p>
         <a>Sets</a>
+        <p class="dot">&#183;</p>
         <a>About Us</a>
       </div>
     </div>
@@ -64,14 +68,14 @@ export default {
         <!-- <div class="path">Home > <span class="current-path">Shampoo</span></div> -->
         <div class="shampoo-products">
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/lipcat.jpg">
+                <img class="shampoo-image" src="../assets/css/images/moouse.jpg">
                 <div class="shampoo-text">Mousse de Rouge</div>
-                <!-- <div class="shampoo-text">Price</div> -->
+                <div class="shampoo-text">Price</div>
             </div>
             <div class="shampoo">
                 <img class="shampoo-image" src="../assets/css/images/winter-red.jpg">
                 <div class="shampoo-text">The Summer Red</div>
-                <!-- <div class="shampoo-text">Price</div> -->
+                <div class="shampoo-text">Price</div>
             </div>
             <div class="shampoo">
                 <img class="shampoo-image" src="../assets/css/images/lip.jpg">
@@ -183,7 +187,11 @@ export default {
 
     <!-- <Footer></Footer> -->
 </template>
-<style>
+<style scoped>
+        .content{
+          margin-top: 25px;
+        }
+
         .shampoo-products {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -202,7 +210,14 @@ export default {
         }
 
         .shampoo-text {
-            font-size: 20px;
-            font-weight: 700;
+          text-align: center;
+        font-weight: 600;
+        padding: 5px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
         }
+
+      .shampoo:hover .shampoo-text {
+        opacity: 1;
+      }
 </style>

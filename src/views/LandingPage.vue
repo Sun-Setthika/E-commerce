@@ -197,6 +197,7 @@ export default {
 
   .nav a:hover {
    text-decoration: underline;
+   transition:  0.3s ease;
   }
 
   .nav a:active {

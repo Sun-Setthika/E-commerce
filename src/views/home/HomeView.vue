@@ -1,12 +1,4 @@
-<!-- <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template> -->
 
 <script>
   import axios from 'axios';
@@ -42,59 +34,81 @@ export default {
         </div>
         <h1>Paris Cosmetic</h1>
         <div class="header-icons">
-          <div class="icons">  <i class="fa fa-user"></i> </div>
-          <div class="icons">  <i class="fa fa-shopping-cart"></i> </div>
+          <div class="icons"> 
+            <a href="/login"> <i class="fa fa-user"></i> 
+            </a>
+            </div>
+          <div class="icons">
+              <a href="/">
+                <i class="fa fa-shopping-cart"></i>
+              </a> 
+            </div>
         </div>
       </div>
       <div class="nav">
         <a href="/welcome">Welcome</a>
+         <p class="dot">&#183;</p> 
+        
         <a >Home</a>
-        <a  href="/lips">Lips</a>
-        <a>Sets</a>
+         <p class="dot">&#183;</p>
+        
+        <a  href="/lips">Lips</a> 
+        <p class="dot">&#183;</p>
+       
+        <a>Sets</a> 
+        <p class="dot">&#183;</p>
+        
         <a>About Us</a>
+        
       </div>
     </div>
 
     <div class="content">
     
-      <div class="hero-div">
-        <img class="hero-img" src="../../assets/css/images/hero-image.jpg">
-        <!-- <img class="hero-img" src="../../assets/css/images/hero-im.jpg"> -->
+      <div class="hero">
+        <div class="hero-div">
+          <img class="hero-img" src="../../assets/css/images/hero-image.jpg">
+          <img class="hero-img-hidden" src="../../assets/css/images/hero-im.jpg">
+          <img class="hero-img-hidden2" src="../../assets/css/images/hero-ig.jpg">
+        </div>
       </div>
       <div class="best">
-        <h3 class="bestselling"> Discover our Bestselling Products</h3>
+        <div class="bestselling">
+          <h3 > DISCOVER OUR BESTSELLING PRODUCTS</h3>
+        </div>
+       
       </div>
      
       <div class="bestselling-products">
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <div class="bestselling-text">La mousse de rouge Maroon</div>
+            <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../../assets/css/images/daphne.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <div class="bestselling-text">La mousse de rouge Daphne</div>
+            <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../../assets/css/images/cafe-gourmand.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <div class="bestselling-text">Le set cafe cafe-gourmand</div>
+            <div class="bestselling-text">$75,00</div>
         </div>
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../../assets/css/images/frambroise.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <div class="bestselling-text">La mousse de rouge Hortenese</div>
+            <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../../assets/css/images/rosier.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <div class="bestselling-text">La mousse de rouge Rosier</div>
+            <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../../assets/css/images/nude-pencils.jpg">
-            <div class="bestselling-text">Product name</div>
-            <div class="bestselling-text">Price</div>
+            <div class="bestselling-text">Les Nudes crayons</div>
+            <div class="bestselling-text">$35,00</div>
         </div>
     </div>
 
@@ -103,6 +117,50 @@ export default {
           <div class="qdiv">
             <img class="quote" src="../../assets/css/images/quote.jpg">
           </div>
+
+          <div class="best">
+        <div class="bestselling">
+          <h3 > DISCOVER OUR SETS</h3>
+        </div>
+       
+      </div>
+     
+      <div>
+        <div class="bestselling-products">
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
+            <div class="bestselling-text">La mousse de rouge Maroon</div>
+            <div class="bestselling-text">$25,00</div>
+        </div>
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/set.jpg">
+            <div class="bestselling-text">La mousse de rouge Daphne</div>
+            <div class="bestselling-text">$25,00</div>
+        </div>
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/set1.jpg">
+            <div class="bestselling-text">Le set cafe cafe-gourmand</div>
+            <div class="bestselling-text">$75,00</div>
+        </div>
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/set3.jpg">
+            <div class="bestselling-text">La mousse de rouge Hortenese</div>
+            <div class="bestselling-text">$25,00</div>
+        </div>
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/set4.jpg">
+            <div class="bestselling-text">La mousse de rouge Rosier</div>
+            <div class="bestselling-text">$25,00</div>
+        </div>
+        <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/lip.jpg">
+            <div class="bestselling-text">Les Nudes crayons</div>
+            <div class="bestselling-text">$35,00</div>
+        </div>
+    </div>
+      </div>
+      
+
           <div class="about-us"><button class="btn-about-us">About us</button></div>
           <p> Get <span class="discount">10% off </span> your first purchase </p>
         </div>
@@ -115,11 +173,11 @@ export default {
         </div>
         <div class="newsletter">
           <p> Stay in touch to join our newsletter 
-          <br>  Enter your email:
+          <br>
+              Enter your email:
           <input class="email" type="text">
           </p>
           
-          <!-- <p> Enter your email: </p> -->
           <button class="btn-subscribe"> Subscribe</button>
         </div>  
         <hr>
@@ -164,6 +222,8 @@ export default {
     flex-direction: column;
   }
 
+  /* header */
+
   .content {
     flex: 1;
     overflow-y: auto;
@@ -174,27 +234,79 @@ export default {
     width: 100%;
   }
 
+  .hero{
+    height: 350px;
+    width:100%;
+  }
+
   .hero-div {
+    position: relative;
     height: 350px;
     padding: 2%;
     background-color: #EFE7DA;
     margin: 0;
+    overflow: hidden;
+    
   }
 
   .hero-img {
+    /* width: 100%;
+    height: 100%;
+    object-fit: cover; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+    animation: hero-transition 10s infinite;
+  }
+
+  .hero-img-hidden{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    animation: hero-transition 20s infinite;
   }
 
-  .qdiv{
+  .hero-img-hidden2{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: hero-transition 25s infinite;
   }
 
-  .quote{
-    width: 100%;
-    object-fit: contain;
+  @keyframes hero-transition {
+    0% {
+    opacity: 1;
   }
+  
+  25% {
+    opacity: 0;
+  }
+ 
+  50% {
+    opacity: 1;
+  }
+  
+  70% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+
 
   .body,
   .header,
@@ -208,6 +320,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
   }
 
   .nav {
@@ -215,6 +328,8 @@ export default {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    font-weight: 600;
+    
   }
 
   .header-icons {
@@ -222,17 +337,43 @@ export default {
     align-items: center;
     margin-left: 1%;
     margin-right: 2%;
+    gap: 10px;
   }
 
   .icons {
     margin: 0 5px; /* Adjust the margin as per your preference */
   }
 
-  .bestselling {
+  .icons a{
+    color: black;
+  }
+
+  .dot{
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* body */
+
+  .best{
+    height: 130px;
+  
+  }
+
+  .bestselling{
+    padding: 23px 0;
+    width: 100%;
+    height: 100%;
+    margin-top: 18px;
+  }
+
+  .bestselling h3 {
     background-color: #EFE7DA;
     text-align: center;
-    height: 40px;
-    padding-top: 14px;
+    font-size: 30px;
+    font-weight: 700;
     margin-bottom: 0;
   }
 
@@ -245,13 +386,45 @@ export default {
     white-space: nowrap; 
     overflow: scroll
 }
+
   
 
-.bestselling-shampoo {
-    width: 272px;
-    /* height: 270px; */
-    height: 100%;
+  .bestselling-detail{
+    height: 350px;
+    width: 370px;
+  }
+
+  .bestselling-shampoo {
+    width: 370px;
+    height: 100% !important;
+    
 }
+
+    .bestselling-text {
+      text-align: center;
+      font-weight: 600;
+      padding: 5px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .bestselling-detail:hover .bestselling-text {
+      opacity: 1;
+    }
+
+
+
+
+  /* footer */
+
+  .qdiv{
+    width: 100%;
+  }
+
+  .quote{
+    width: 100%;
+    object-fit: contain;
+  }
 
   .quote-div {
     position: relative;
@@ -261,7 +434,7 @@ export default {
 
   .about-us {
     position: absolute;
-    top: 60%;
+    top: 25%;
     left: 85%;
   }
 
@@ -309,22 +482,22 @@ export default {
   }
 
   .newsletter {
-    margin-top: 8px;
+    margin: 10px 0;
     padding-top: 1px;
-    padding-bottom: 2px;
-    height: 60px;
+    padding-bottom: 5px;
+    height: 100px;
     background-color: #EFE7DA;
     position: relative;
   }
 
   .newsletter p {
-    padding-bottom: 5px;
-    margin-bottom: 1px;
+    margin: 10px 0;
     text-align: center;
   }
 
   .email {
     border: none;
+    height: 20px;
   }
 
   .btn-subscribe {
@@ -336,12 +509,15 @@ export default {
     background-color: #EFE7DA;
     padding: 10px;
     border: 1px solid black;
+    margin-bottom: 15px;
+    
   }
 
   .footer {
     height: 30px;
     display: flex;
     justify-content: space-between;
+    
   }
 
   .left-footer {
@@ -349,6 +525,7 @@ export default {
     justify-content: space-evenly;
     margin-left: 8px;
     width: 100px;
+    gap: 10px
   }
 
   .right-footer {
@@ -356,7 +533,9 @@ export default {
     justify-content: space-evenly;
     margin-left: 5px;
     width: 200px;
+    gap: 10px;
   }
+  
 
   @media(min-height: 200px) and (max-height: 450px) {
     .div-products {
@@ -372,4 +551,6 @@ export default {
 }
 
 </style>
+
+
 
