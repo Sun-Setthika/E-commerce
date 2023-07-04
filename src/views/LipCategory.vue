@@ -45,7 +45,9 @@ export default {
         </div>
         <h1>Paris Cosmetic</h1>
         <div class="header-icons">
-          <div class="icons">  <i class="fa fa-user"></i> </div>
+          <div class="icons"> 
+            <a href="/login"> <i class="fa fa-user"></i> </a>
+          </div>
           <div class="icons">  <i class="fa fa-shopping-cart"></i> </div>
         </div>
       </div>

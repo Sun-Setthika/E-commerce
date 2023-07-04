@@ -63,7 +63,7 @@ export default {
 
     <!-- content -->
     <div class="content">
-      <h3> LOGIN </h3>
+      <h3> SIGNUP </h3>
       <div class="login">
         <div class="input-wrapper">
         <label class="email">Email: </label>
@@ -78,7 +78,7 @@ export default {
       </div>
       </div>
       <button class="btn"> LOGIN </button>
-      <a href="/signup" class="acc"> Create an account </a>
+      <a class="acc"> Create an account </a>
 
     </div>
 
@@ -105,7 +105,7 @@ export default {
   .content{
     margin: auto;
     padding-top: 50px;
-    height: 470px;
+    height: 500px;
     text-align: center;
   }
 
@@ -156,8 +156,7 @@ export default {
     border: 1px solid #EFE7DA;
     background-color: #EFE7DA;
     margin: 20px;
-    font-weight: 500;
-    height: 50px;
+    
   }
 
   .acc{

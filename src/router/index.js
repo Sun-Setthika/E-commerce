@@ -3,6 +3,7 @@ import HomeView from '../views/home/HomeView.vue'
 import LandingPage from '../views/LandingPage.vue'
 import LipCategory from '../views/LipCategory.vue'
 import Login from '../views/Login.vue'
+import Signup from '../views/Signup.vue'
 import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: () => import('../views/Login.vue')
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
     },
     {
       path: '/lips',
