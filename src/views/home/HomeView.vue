@@ -38,7 +38,7 @@ export default {
             <a href="/login"> <i class="fa fa-user"></i> </a>
             </div>
           <div class="icons">
-              <a href="/">
+              <a href="/cart">
                 <i class="fa fa-shopping-cart"></i>
               </a> 
             </div>

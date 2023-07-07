@@ -70,7 +70,7 @@ export default {
         <!-- <div class="path">Home > <span class="current-path">Shampoo</span></div> -->
         <div class="shampoo-products">
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/moouse.jpg">
+                <img class="shampoo-image" src="../assets/css/images/framboise.jpg">
                 <div class="shampoo-text">Mousse de Rouge</div>
                 <div class="shampoo-text">Price</div>
             </div>

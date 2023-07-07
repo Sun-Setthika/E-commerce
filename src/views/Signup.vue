@@ -64,21 +64,23 @@ export default {
     <!-- content -->
     <div class="content">
       <h3> SIGNUP </h3>
-      <div class="login">
-        <div class="input-wrapper">
-        <label class="email">Email: </label>
-        <input type="email"  class="input-line"> 
-      </div>
-      <div class="input-wrapper">
-        <div class="password"> 
-          <label> Password: </label>
-          <a> forgot ?</a>
+      <form>
+        <div class="login">
+          <div class="input-wrapper">
+            <label class="username">Username: </label>
+          <input type="text" name="username"  class="input-line"> 
         </div>
-        <input type="password"  class="input-line"> 
-      </div>
-      </div>
-      <button class="btn"> LOGIN </button>
-      <a class="acc"> Create an account </a>
+          <div class="input-wrapper">
+            <label class="email">Email: </label>
+          <input type="email" name="email" class="input-line"> 
+        </div>
+        <div class="input-wrapper">
+            <label class="password"> Password: </label>
+            <input type="password" name="password"  class="input-line"> 
+        </div>
+        </div>
+        <button type="submit" class="btn"> SIGNUP </button>
+      </form>
 
     </div>
 
@@ -128,15 +130,22 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 20px;
   }
 
   /* .input-wrapper label{
     margin-left: -17%;
   } */
+  .input-wrapper .username{
+    margin-left: -243px;
+  }
 
   .input-wrapper .email{
     margin-left: -270px;
+  }
+
+  .input-wrapper .password{
+    margin-left: -250px;
   }
 
   .password{
@@ -156,6 +165,9 @@ export default {
     border: 1px solid #EFE7DA;
     background-color: #EFE7DA;
     margin: 20px;
+    font-weight: 500;
+    height: 50px;
+    font-size: medium;
     
   }
 

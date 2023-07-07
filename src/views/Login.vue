@@ -62,25 +62,28 @@ export default {
     </div>
 
     <!-- content -->
+    
     <div class="content">
       <h3> LOGIN </h3>
-      <div class="login">
-        <div class="input-wrapper">
-        <label class="email">Email: </label>
-        <input type="email"  class="input-line"> 
-      </div>
-      <div class="input-wrapper">
-        <div class="password"> 
-          <label> Password: </label>
-          <a> forgot ?</a>
+      <form>
+        <div class="login">
+          <div class="input-wrapper">
+          <label class="email">Email: </label>
+          <input type="email" name="email"  class="input-line"> 
         </div>
-        <input type="password"  class="input-line"> 
-      </div>
-      </div>
-      <button class="btn"> LOGIN </button>
-      <a href="/signup" class="acc"> Create an account </a>
-
+        <div class="input-wrapper">
+          <div class="password"> 
+            <label> Password: </label>
+            <a> forgot ?</a>
+          </div>
+          <input type="password" name="password" class="input-line"> 
+        </div>
+        </div>
+        <button type="submit" class="btn"> LOGIN </button>
+        <a href="/signup" class="acc"> Create an account </a>
+      </form>
     </div>
+   
 
     <div class="footer">
      
@@ -128,7 +131,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 20px;
   }
 
   /* .input-wrapper label{
@@ -158,11 +161,13 @@ export default {
     margin: 20px;
     font-weight: 500;
     height: 50px;
+    font-size: medium;
   }
 
   .acc{
     display: block;
     text-decoration: none;
+    color: black;
   }
 
   .acc:hover,

@@ -4,6 +4,8 @@ import LandingPage from '../views/LandingPage.vue'
 import LipCategory from '../views/LipCategory.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
+import Cart from '../views/Cart.vue'
+import Checkout from '../views/Checkout.vue'
 import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
@@ -39,6 +41,16 @@ const router = createRouter({
       path: '/signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
+    },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: Checkout
     },
     {
       path: '/lips',
