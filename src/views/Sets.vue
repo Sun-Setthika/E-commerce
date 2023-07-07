@@ -118,12 +118,12 @@ export default {
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/lipSet3.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lipset3.jpg">
                 <div class="shampoo-text">Mousse de praline</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/lipSet4.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lipset4.jpg">
                 <div class="shampoo-text">Maroon</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
