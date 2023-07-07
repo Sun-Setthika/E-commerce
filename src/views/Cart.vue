@@ -304,7 +304,7 @@ export default {
     color: white;
     background-color: black;
     padding: 10px;
-    margin: 0 90px;
+    margin: 10px 18%;
     font-weight: bold;
     height: 40px;
     font-size: medium;
