@@ -231,6 +231,7 @@ export default {
 
   .wrapper {
     width: 100%;
+    
   }
 
   .hero{
@@ -383,13 +384,14 @@ export default {
     column-gap: 120px;
     margin-bottom: 30px;
     white-space: nowrap; 
-    overflow: scroll
+    overflow: scroll;
+    height: 500px;
 }
 
   
 
   .bestselling-detail{
-    height: 350px;
+    height: 310px;
     width: 370px;
   }
 

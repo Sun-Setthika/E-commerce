@@ -33,31 +33,21 @@ export default {
         <h1>Paris Cosmetic</h1>
         <div class="header-icons">
           <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-              <a href="/">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
+            <a href="/login"> <i class="fa fa-user"></i> </a>
+          </div>
+          <div class="icons">  <i class="fa fa-shopping-cart"></i> </div>
         </div>
       </div>
       <div class="nav">
         <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
         <p class="dot">&#183;</p>
-       
-        <a>Sets</a> 
+        <a href="/">Home</a>
         <p class="dot">&#183;</p>
-        
+        <a href="/lips">Lips</a>
+        <p class="dot">&#183;</p>
+        <a>Sets</a>
+        <p class="dot">&#183;</p>
         <a>About Us</a>
-        
       </div>
     </div>
 
@@ -84,7 +74,7 @@ export default {
       </form>
     </div>
    
-
+    <hr>
     <div class="footer">
      
      <div class="right-footer">
@@ -105,15 +95,30 @@ export default {
 </template>
 
 <style scoped>
+  .wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  .header {
+    position: relative; /* Add this line to make the header position relative */
+  }
+  
+
   .content{
-    margin: auto;
-    padding-top: 50px;
-    height: 470px;
+    margin-top: 120px;
+    padding-top: 100px;
+    height: 507px;
     text-align: center;
+    overflow-y: hidden;
   }
 
   .content h3{
     font-size: 40px;
+    margin-top: 0;
   }
 
   .input-line {

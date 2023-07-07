@@ -69,11 +69,20 @@ export default {
         <div>
         <!-- <div class="path">Home > <span class="current-path">Shampoo</span></div> -->
         <div class="shampoo-products">
+          <router-link to="/product">
+          <button class="product-btn">
             <div class="shampoo">
                 <img class="shampoo-image" src="../assets/css/images/framboise.jpg">
                 <div class="shampoo-text">Mousse de Rouge</div>
                 <div class="shampoo-text">Price</div>
             </div>
+          </button>
+        </router-link>
+            <!-- <div class="shampoo">
+                <img class="shampoo-image" src="../assets/css/images/framboise.jpg">
+                <div class="shampoo-text">Mousse de Rouge</div>
+                <div class="shampoo-text">Price</div>
+            </div> -->
             <div class="shampoo">
                 <img class="shampoo-image" src="../assets/css/images/winter-red.jpg">
                 <div class="shampoo-text">The Summer Red</div>
@@ -194,14 +203,19 @@ export default {
           margin-top: 25px;
         }
 
+        .product-btn{
+          border: none;
+          background-color: #F6F5EC;
+        }
+
         .shampoo-products {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
 
-            padding-left: 57px;
-            padding-right: 57px;
+            padding-left: 20px;
+            padding-right: 20px;
             padding-bottom: 30px;
-            column-gap: 90px;
+            column-gap: 50px;
             row-gap: 30px;
             white-space: nowrap; 
         }
@@ -213,10 +227,10 @@ export default {
 
         .shampoo-text {
           text-align: center;
-        font-weight: 600;
-        padding: 5px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+          font-weight: 600;
+          padding: 5px;
+          opacity: 0;
+          transition: opacity 0.3s ease;
         }
 
       .shampoo:hover .shampoo-text {

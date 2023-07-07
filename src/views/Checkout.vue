@@ -111,7 +111,7 @@ export default {
               <hr>
 
               <div class="customer-footer">
-               <a class="path"> &lt; Return to Cart</a>
+               <a href="/cart" class="path"> &lt; Return to Cart</a>
                <button class="shipping-btn"> continue to shipping method </button>
               </div>
             </form>
@@ -142,15 +142,15 @@ export default {
                   <p> Gift card or discount code </p>
                 </div>
                 <div class="discount">
-                  <input type="text" name="discount-code" class="input-line"> 
+                  <input type="text" name="discount-code" class="discount-input"> 
                   <button class="btn"> Apply </button>
                 </div>
               </div>
           </form>
             <hr>
             <div class="summary-details">
-              <p> Total </p>
-              <p> $20.00 </p>
+              <p class="total"> Total </p>
+              <p class="total"> $20.00 </p>
             </div>
             <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>
@@ -194,6 +194,8 @@ export default {
 
   .path{
     font-size: 14px;
+    text-decoration: none;
+    color: black;
   }
 
   hr{
@@ -282,6 +284,10 @@ export default {
     margin-bottom: 0;
   }
 
+  .summary-details .total{
+    font-weight: bold;
+  }
+
   .discount{
     display: flex;
     justify-content: space-between;
@@ -291,6 +297,13 @@ export default {
 
   .discount-details{
     margin-bottom: 19px;
+  }
+
+  .discount-input{
+    background-color: white;
+    height: 28px;
+    width: 380px;
+    border: white;
   }
 
   /* .btn{

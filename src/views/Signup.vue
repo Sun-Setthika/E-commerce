@@ -83,7 +83,7 @@ export default {
       </form>
 
     </div>
-
+    <hr>
     <div class="footer">
      
      <div class="right-footer">
@@ -104,12 +104,28 @@ export default {
 </template>
 
 <style scoped>
-  .content{
-    margin: auto;
-    padding-top: 50px;
-    height: 500px;
-    text-align: center;
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
   }
+
+  .header {
+    position: relative; /* Add this line to make the header position relative */
+  }
+  
+
+  .content{
+    margin-top: 80px;
+    padding-top: 100px;
+    height: 545px;
+    text-align: center;
+    overflow-y: hidden;
+  }
+
 
   .content h3{
     font-size: 40px;

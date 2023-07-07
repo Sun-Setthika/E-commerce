@@ -188,8 +188,9 @@ export default {
     height: 2px;
     background-color: black;
   }
+
   .content{
-    margin: auto;
+    
     padding: 0 30px;
     height: 520px;
     display: flex;
@@ -274,11 +275,11 @@ export default {
   .summary{
     width: 40%;
     background-color: #EFE7DA;
-    margin-top: 70px;
+    margin-top: 50px;
     padding: 20px;
     position: sticky; 
     bottom: 0;
-    height: 400px;
+    height: 385px;
   }
 
   .summary p{
