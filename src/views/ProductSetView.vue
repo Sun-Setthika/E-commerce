@@ -94,7 +94,7 @@
         <img src="../assets/css/images/daphne.jpg">
         <img src="../assets/css/images/rosier.jpg">
         <img src="../assets/css/images/pivoine.jpg">
-        <img src="../assets/images/product-page-image5.png">
+        
     </div>
   
   
