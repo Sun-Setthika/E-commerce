@@ -2,7 +2,7 @@
   import axios from 'axios';
 
 export default {
-  name: 'LipCategory',
+  name: 'Sets',
   data() {
     return {
       jsonData: null,
@@ -62,7 +62,7 @@ export default {
         <p class="dot">&#183;</p>
         <a href="/lips">Lips</a>
         <p class="dot">&#183;</p>
-        <a href="/sets">Sets</a>
+        <a>Sets</a>
         <p class="dot">&#183;</p>
         <a>About Us</a>
       </div>
@@ -73,10 +73,10 @@ export default {
         <div>
         <!-- <div class="path">Home > <span class="current-path">Shampoo</span></div> -->
         <div class="shampoo-products">
-          <router-link to="/product">
+          <router-link to="/productsetview">
           <button class="product-btn">
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/framboise.jpg">
+                <img class="shampoo-image" src="../assets/css/images/yolainXgala.jpg">
                 <div class="shampoo-text">Mousse de Rouge</div>
                 <div class="shampoo-text">Price</div>
             </div>
@@ -88,42 +88,42 @@ export default {
                 <div class="shampoo-text">Price</div>
             </div> -->
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/winter-red.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lipSet2.jpg">
                 <div class="shampoo-text">The Summer Red</div>
                 <div class="shampoo-text">Price</div>
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/lip.jpg">
+                <img class="shampoo-image" src="../assets/css/images/aboutUs.jpg">
                 <div class="shampoo-text">Nude Lip Mousse</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/pivoine.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lip.jpg">
                 <div class="shampoo-text">Pivoine</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/daphne.jpg">
+                <img class="shampoo-image" src="../assets/css/images/winter-red.jpg">
                 <div class="shampoo-text">daphne</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/frambroise.jpg">
+                <img class="shampoo-image" src="../assets/css/images/cafe-gourmand.jpg">
                 <div class="shampoo-text">Frambroise</div>
                 <div class="shampoo-text">Price</div>
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/rosier.jpg">
+                <img class="shampoo-image" src="../assets/css/images/brush.jpg">
                 <div class="shampoo-text">Mousse de rosier</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/moouse.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lipSet3.jpg">
                 <div class="shampoo-text">Mousse de praline</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/rouge.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lipSet4.jpg">
                 <div class="shampoo-text">Maroon</div>
                 <!-- <div class="shampoo-text">Price</div> -->
             </div>

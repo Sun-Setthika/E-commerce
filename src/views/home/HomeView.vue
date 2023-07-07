@@ -32,7 +32,11 @@ export default {
           <div class="icons">  <i class="fa fa-bars"></i> </div>
           <div class="icons">  <i class="fa fa-search"></i> </div>
         </div>
-        <h1>Paris Cosmetic</h1>
+
+        <!-- <a href="/"> -->
+          <h1>Paris Cosmetic</h1>
+        <!-- </a> -->
+        
         <div class="header-icons">
           <div class="icons"> 
             <a href="/login"> <i class="fa fa-user"></i> </a>
@@ -54,7 +58,7 @@ export default {
         <a  href="/lips">Lips</a> 
         <p class="dot">&#183;</p>
        
-        <a>Sets</a> 
+        <a href="/sets">Sets</a> 
         <p class="dot">&#183;</p>
         
         <a>About Us</a>
@@ -79,13 +83,19 @@ export default {
       </div>
      
       <div class="bestselling-products">
-        <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
+        <router-link to="/product">
+          <button class="lip-btn">
+          <div class="bestselling-detail">
+            <img class="bestselling-shampoo" src="../../assets/css/images/framboise.jpg">
             <div class="bestselling-text">La mousse de rouge Maroon</div>
             <div class="bestselling-text">$25,00</div>
-        </div>
+          </div>
+          </button>
+        </router-link>
+        
+        
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/daphne.jpg">
+            <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
             <div class="bestselling-text">La mousse de rouge Daphne</div>
             <div class="bestselling-text">$25,00</div>
         </div>
@@ -392,7 +402,7 @@ export default {
 
   .bestselling-detail{
     height: 310px;
-    width: 370px;
+    width: 350px;
   }
 
   .bestselling-shampoo {
@@ -411,6 +421,14 @@ export default {
 
     .bestselling-detail:hover .bestselling-text {
       opacity: 1;
+    }
+
+    .lip-btn{
+      background-color: #F6F5EC;
+      border: none;
+      padding: 0;
+      margin-left: 0;
+      margin-right: 0;
     }
 
 

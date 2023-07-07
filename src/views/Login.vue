@@ -45,7 +45,7 @@ export default {
         <p class="dot">&#183;</p>
         <a href="/lips">Lips</a>
         <p class="dot">&#183;</p>
-        <a>Sets</a>
+        <a href="/sets">Sets</a>
         <p class="dot">&#183;</p>
         <a>About Us</a>
       </div>

@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
 import LandingPage from '../views/LandingPage.vue'
 import LipCategory from '../views/LipCategory.vue'
+import Sets from '../views/Sets.vue'
+import ProductSetView from '../views/ProductSetView.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Cart from '../views/Cart.vue'
@@ -62,6 +64,16 @@ const router = createRouter({
       path: '/lips',
       name: 'LipCategory',
       component: LipCategory
+    },
+    {
+      path: '/sets',
+      name: 'Sets',
+      component: Sets
+    },
+    {
+      path: '/productsetview',
+      name: 'ProductSetView',
+      component: ProductSetView
     }
   ]
 })

@@ -10,7 +10,11 @@
           <div class="icons"> 
             <a href="/login"> <i class="fa fa-user"></i> </a>
           </div>
-          <div class="icons">  <i class="fa fa-shopping-cart"></i> </div>
+          <div class="icons">
+              <a href="/cart">
+                <i class="fa fa-shopping-cart"></i>
+              </a> 
+            </div>
         </div>
       </div>
       <div class="nav">
@@ -20,7 +24,7 @@
         <p class="dot">&#183;</p>
         <a href="/lips">Lips</a>
         <p class="dot">&#183;</p>
-        <a>Sets</a>
+        <a href="/sets">Sets</a>
         <p class="dot">&#183;</p>
         <a>About Us</a>
       </div>
