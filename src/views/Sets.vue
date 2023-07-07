@@ -88,7 +88,7 @@ export default {
                 <div class="shampoo-text">Price</div>
             </div> -->
             <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/lipSet2.jpg">
+                <img class="shampoo-image" src="../assets/css/images/lipset2.jpg">
                 <div class="shampoo-text">The Summer Red</div>
                 <div class="shampoo-text">Price</div>
             </div>
