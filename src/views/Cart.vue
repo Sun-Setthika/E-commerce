@@ -190,7 +190,7 @@ export default {
   }
   .content{
     margin: auto;
-    padding: 25px 30px;
+    padding: 0 30px;
     height: 520px;
     display: flex;
     justify-content: space-between;
@@ -199,7 +199,7 @@ export default {
   }
 
   h3{
-    font-size: 30px;
+    font-size: 25px;
   }
   /* cart */
   .cart-product {
@@ -283,7 +283,7 @@ export default {
 
   .summary p{
     font-weight: 500;
-    font-size: medium;
+    font-size: 16px;
   }
 
   .summary hr{
@@ -294,6 +294,7 @@ export default {
   .summary-details{
     display: flex;
     justify-content: space-between;
+    margin-bottom: -5px;
   }
 
   .btn{

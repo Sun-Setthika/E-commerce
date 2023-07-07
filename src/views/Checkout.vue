@@ -84,11 +84,30 @@ export default {
                 <input type="name" name="email" class="input-line" placeholder="Address">
                 <input type="name" name="email" class="input-line" placeholder="Apt.Optional">
               </div>
-              <div class="customer-name">
+              <!-- <div class="customer-name">
                 <input type="name" name="email" class="input-line" placeholder="Country">
                 <input type="name" name="email" class="input-line" placeholder="State">
                 <input type="name" name="email" class="input-line" placeholder="Zip">
+              </div> -->
+
+              <div class="customer-name">
+                <select class="input-line" name="country" placeholder="Country">
+                  <option value="" disabled selected>Select Country</option>
+                  <option value="Cambodia"> Cambodia </option>
+                  <option value="France"> France </option>
+                  <option value="United Kingdom"> United Kingdom</option>
+                  <!-- Add more options for countries -->
+                </select>
+                <select class="input-line" name="state" placeholder="State">
+                  <option value="" disabled selected>Select State</option>
+                  <option value="Phnom Penh"> Phnom Penh </option>
+                  <option value="Paris"> Paris </option>
+                  <option value="London"> London </option>
+                  <!-- Add more options for states -->
+                </select>
+                <input type="name" name="zip" class="input-line" placeholder="Zip">
               </div>
+
               <hr>
 
               <div class="customer-footer">
@@ -118,20 +137,21 @@ export default {
                 <p> - </p>
               </div>
               <hr>
-              <div>
+              <div class="discount-details">
                 <div>
                   <p> Gift card or discount code </p>
                 </div>
                 <div class="discount">
-                  <input type="text" name="discount-code"> 
+                  <input type="text" name="discount-code" class="input-line"> 
                   <button class="btn"> Apply </button>
                 </div>
               </div>
           </form>
-            <!-- <div class="summary-details">
+            <hr>
+            <div class="summary-details">
               <p> Total </p>
               <p> $20.00 </p>
-            </div> -->
+            </div>
             <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>
           </router-link> -->
@@ -164,7 +184,7 @@ export default {
 <style scoped>
   .content{
     margin: auto;
-    padding: 25px 30px;
+    padding: 15px 30px;
     height: 520px;
     display: flex;
     justify-content: space-between;
@@ -182,7 +202,7 @@ export default {
   }
   
   h3{
-    font-size: 20px;
+    font-size: 25px;
   }
   /* customer info */
   .customer-info{
@@ -219,10 +239,11 @@ export default {
     margin-top: 12px;
   }
 
-  .shipping-btn{
+  .shipping-btn,
+  .btn{
     background-color: black;
     color: white;
-    height: 25px;
+    height: 28px;
     width: 250px;
   }
 
@@ -242,18 +263,19 @@ export default {
 
   .summary p{
     font-weight: 500;
-    font-size: medium;
+    font-size: 16px;
   }
 
   .summary hr{
     height: 2.2px;
     font-weight: bold;
+ 
   }
 
   .summary-details{
     display: flex;
     justify-content: space-between;
-    margin-top: -5px;
+    margin-top: -15px;
   }
 
   .summary-details:not(:last-child) {
@@ -263,9 +285,15 @@ export default {
   .discount{
     display: flex;
     justify-content: space-between;
+    column-gap: 8px;
+    margin-bottom: 0;
   }
 
-  .btn{
+  .discount-details{
+    margin-bottom: 19px;
+  }
+
+  /* .btn{
     width: 320px;
     border-radius: 30px;
     padding: 8px;
@@ -277,7 +305,7 @@ export default {
     height: 40px;
     font-size: medium;
     
-  }
+  } */
 
   .shipping-btn:hover,
   .btn:hover{
