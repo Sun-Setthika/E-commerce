@@ -64,59 +64,66 @@ export default {
     <!-- content -->
     <div class="content">
         <div class="cart">
-            <p class="path"> Cart > <span class="customer-info"> Customer Information </span> > Shipping Information > Payment method </p>
+            <p class="path"> Cart >  Customer Information > Shipping Information >  <span class="customer-info"> Payment method  </span> </p>
             <hr>
-            <h3> Customer Information </h3>
-            
 
-            <form>
-              <input type="email" name="email" class="input-line" placeholder="Email">
-              <hr>
-              <h3> Shipping Information </h3>
-              <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Firstname">
-                <input type="name" name="email" class="input-line" placeholder="Lastname">
-              </div>
-              <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Company(Optional)">
-              </div>
-              <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Address">
-                <input type="name" name="email" class="input-line" placeholder="Apt.Optional">
-              </div>
-              <!-- <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Country">
-                <input type="name" name="email" class="input-line" placeholder="State">
-                <input type="name" name="email" class="input-line" placeholder="Zip">
-              </div> -->
-
-              <div class="customer-name">
-                <select class="input-line" name="country" placeholder="Country">
-                  <option value="" disabled selected>Select Country</option>
-                  <option value="Cambodia"> Cambodia </option>
-                  <option value="France"> France </option>
-                  <option value="United Kingdom"> United Kingdom</option>
-                  <!-- Add more options for countries -->
-                </select>
-                <select class="input-line" name="state" placeholder="State">
-                  <option value="" disabled selected>Select State</option>
-                  <option value="Phnom Penh"> Phnom Penh </option>
-                  <option value="Paris"> Paris </option>
-                  <option value="London"> London </option>
-                  <!-- Add more options for states -->
-                </select>
-                <input type="name" name="zip" class="input-line" placeholder="Zip">
-              </div>
-
-              <hr>
-
-              <div class="customer-footer">
+            <div class="shipping-address">
+                <p> <span class="customer-info"> Shipping address </span> 12 Waldo Point Road, Mishauken NY 1200 </p>
+                <p> Edit </p>
+            </div>
+            <hr>
+            <div class="shipping-address"> 
+                <p> <span class="customer-info"> Shipping Method </span> UPS Ground, $2.20 </p>
+                <p> Edit </p>
+            </div>
+            <hr>
+            <div> 
+                <div>
+                    <div class="payment">
+                        <h3> Payment method</h3>
+                        <div class="payment-method"> 
+                            <i class="fa fa-cc-mastercard"></i>
+                            <i class="fa fa-cc-visa"></i>
+                            <i class="fa fa-paypal"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" name="cardNumber" class="input-line" placeholder="Card number">
+                    </div>
+                    <div class="payment-details">
+                        <input type="text" name="nameOfCard" class="input-line" placeholder="Name of card">
+                        <input type="date" name="date" class="input-line" placeholder="YYYY-MM-DD">
+                        <input type="text" name="cvv" class="input-line" placeholder="CVV">
+                    </div>
+                    
+                </div>
+                <hr>
+                <div>
+                    <h3> Billing Address </h3>
+                </div>
+                <div class="bill-input">
+                  <input type="radio" name="address" value="shipping-address" id="shipping-address" class="input-radio">
+                  <label for="shipping-address"> Same as shipping address </label>
+                </div>
+                <div class="bill-input">
+                  <input type="radio" name="address" value="billing-address" id="billing-address" class="input-radio">
+                  <label for="billing-address"> Use a different billing address </label>
+                </div>
+            </div>
+            <div>
+              <div>
+                    <h3> Remember Me </h3>
+                </div>
+                <div class="bill-input">
+                  <input type="checkbox" name="information" value="information" id="information" class="checkbox-radio">
+                  <label for="shipping-address"> Same as shipping address </label>
+                </div>
+            </div>
+            <hr>
+            <div class="customer-footer">
                <a href="/cart" class="path"> &lt; Return to Cart</a>
                <button class="shipping-btn"> continue to shipping method </button>
-              </div>
-            </form>
-           
-            
+              </div> 
 
         </div>
 
@@ -130,11 +137,11 @@ export default {
               </div>
               <div  class=" summary-details">
                 <p> Shipping </p>
-                <p> - </p>
+                <p> $2.20 </p>
               </div>
               <div  class=" summary-details">
                 <p>Taxes </p>
-                <p> - </p>
+                <p> @1.40 </p>
               </div>
               <hr>
               <div class="discount-details">
@@ -185,12 +192,14 @@ export default {
   .content{
     margin: auto;
     padding: 15px 30px;
-    height: 520px;
+    height: 600px;
     display: flex;
     justify-content: space-between;
     column-gap: 20px;
     overflow-y: hidden;
   }
+
+  /* cart header */
 
   .path{
     font-size: 14px;
@@ -201,8 +210,8 @@ export default {
   hr{
     height: 2px;
     background-color: black;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
   
   h3{
@@ -213,6 +222,8 @@ export default {
     font-weight: bold;
   }
 
+  /* shipping info */
+
   .cart{
     width: 60%;
   }
@@ -222,30 +233,43 @@ export default {
     margin-bottom: 18px;
   }
 
+  .shipping-address,
+  .payment{
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    align-items: center;
+  }
+
+  .shipping-address p{
+    font-size: 16px;
+  }
+
+  /* Payment method */
+  .payment{
+    margin: 15px auto;
+  }
+  .payment-method{
+    display: flex;
+    column-gap: 16px;
+  }
+
+  .payment-details{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    column-gap: 5px;
+  }
+
   .input-line {
     display: block;
     background-color: #EFE7DA;
     border: 1px solid black;
-    height: auto;
+    height: 25px;
     width: 100%;
     padding: 5px 10px;
     margin: auto;
     text-align: start;
-  }
-
-  .customer-name{
-    display: flex;
-    justify-content: space-between;
-    column-gap: 10px;
-    margin: 12px 0;
-    
-  }
-
-  .customer-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 12px;
   }
 
   .shipping-btn,
@@ -254,6 +278,35 @@ export default {
     color: white;
    
     padding: 5px 20px;
+  }
+
+  /* biling address */
+  .bill-input{
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    font-size: 13px;
+    height: 25px;
+    background-color: #EFE7DA;
+    padding: 5px 10px;
+    border: 1px solid black;
+  }
+
+  .input-radio{
+    margin: 0;
+  }
+
+  .checkbox-radio{
+    border-radius: 0;
+    border: 2px solid black ;
+  }
+  
+  /* customer footer */
+  .customer-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
   }
 
 
@@ -313,19 +366,7 @@ export default {
     border: white;
   }
 
-  /* .btn{
-    width: 320px;
-    border-radius: 30px;
-    padding: 8px;
-    color: white;
-    background-color: black;
-    padding: 10px;
-    margin: 0 90px;
-    font-weight: bold;
-    height: 40px;
-    font-size: medium;
-    
-  } */
+ 
 
   .shipping-btn:hover,
   .btn:hover{

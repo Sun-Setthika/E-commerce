@@ -299,7 +299,7 @@ export default {
   }
 
   .btn{
-    width: 320px;
+    /* width: 320px; */
     border-radius: 30px;
     padding: 8px;
     color: white;
@@ -307,8 +307,9 @@ export default {
     padding: 10px;
     margin: 10px 18%;
     font-weight: bold;
-    height: 40px;
+    /* height: 40px; */
     font-size: medium;
+    padding: 10px 110px;
     
   }
 

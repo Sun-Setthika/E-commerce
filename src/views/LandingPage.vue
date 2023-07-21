@@ -50,7 +50,7 @@ export default {
     <div class="content">
     
      
-      <div class="bestselling-products">
+      <div class="bestselling-product">
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../assets/css/images/lipSet.jpg">
             <!-- <div class="bestselling-text">Product name</div>
@@ -91,7 +91,7 @@ export default {
 
       <div>
        
-        <div class="newsletter">
+        <div class="newsletters">
           <p> Stay in touch to join our newsletter 
           <br>  Enter your email:
           <input class="email" type="text">
@@ -228,7 +228,7 @@ export default {
     height: 100%;
   }
 
-  .bestselling-products {
+  .bestselling-product {
     display: flex;
     padding: 40px;
     /* padding-left: 57px;
@@ -273,7 +273,7 @@ export default {
     margin-left: 5%;
   }
 
-  .newsletter {
+  .newsletters {
     margin-top: 8px;
     padding-top: 1px;
     padding-bottom: 2px;

@@ -1,28 +1,29 @@
-
-
 <script>
-  import axios from 'axios';
-
-export default {
-  name: 'HomeView',
-  data() {
-    return {
-      jsonData: null,
-    };
-  },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
+  import { ref } from 'vue'
+  import Popup from '../CartPopUp.vue'
+  //ref is a special attribute that is used to give a name to a child component or element so that it can be referenced in the parent component. It is used to access the properties and methods of the child component or element from the parent component.
+  
+  export default {
+    name: 'HomeView',
+    components: {
+      Popup,
+    },
+    setup() {
+      const popupTrigger = ref({
+        buttonTrigger: false,
       })
-      .catch(error => {
-        console.error(error);
-      });
-  },
-};
-
-</script>
+  
+      const togglePopup = (trigger) => {
+        popupTrigger.value[trigger] = !popupTrigger.value[trigger]
+      }
+  
+      return {
+        popupTrigger,
+        togglePopup,
+      }
+    },
+  }
+  </script>
 
 <template>
   <div class="body">
@@ -42,9 +43,12 @@ export default {
             <a href="/login"> <i class="fa fa-user"></i> </a>
             </div>
           <div class="icons">
-              <a href="/cart">
+              <!-- <a href="/cart">
                 <i class="fa fa-shopping-cart"></i>
-              </a> 
+              </a>  -->
+              <i class="fa fa-shopping-cart" @click="() => togglePopup('buttonTrigger')"></i>
+  
+            <Popup v-if="popupTrigger.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"></Popup>
             </div>
         </div>
       </div>
@@ -183,8 +187,8 @@ export default {
         <div class="newsletter">
           <p> Stay in touch to join our newsletter 
           <br>
-              Enter your email:
-          <input class="email" type="text">
+              <!-- Enter your email: -->
+          <input class="input" type="email" placeholder="Enter your email">
           </p>
           
           <button class="btn-subscribe"> Subscribe</button>
@@ -392,10 +396,15 @@ export default {
     padding-left: 57px;
     padding-right: 57px;
     column-gap: 120px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     white-space: nowrap; 
     overflow: scroll;
-    height: 500px;
+    display: flex;
+    padding: 40px;
+    height: 450px;
+    width: 100%;
+    overflow-y: hidden;
+
 }
 
   
@@ -484,7 +493,7 @@ export default {
     justify-content: space-between;
     height: 100px;
   }
-
+  
   .feedback img {
     width: 100px;
     height: 100px;
@@ -504,19 +513,42 @@ export default {
     margin: 10px 0;
     padding-top: 1px;
     padding-bottom: 5px;
-    height: 100px;
+    height: 90px;
     background-color: #EFE7DA;
     position: relative;
   }
 
   .newsletter p {
-    margin: 10px 0;
+    /* margin: 10px 0; */
+    padding: 10px auto;
     text-align: center;
   }
 
   .email {
     border: none;
     height: 20px;
+  }
+
+  .input {
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 300px;
+    /* padding: 5px; */
+    margin: auto;
+    text-align: center;
+    background-color: #EFE7DA;
+    
+    padding: 10px;
+  }
+
+  input::placeholder{
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+    
+    
   }
 
   .btn-subscribe {

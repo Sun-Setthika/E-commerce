@@ -17,8 +17,14 @@
           </ul>
         </div>
         <div class="cart-popup-btn-container">
-          <button id="cart-popup-view-cart-btn">View cart</button>
-          <button id="cart-popup-check-out-btn">Check out</button>
+          <router-link to="/cart">
+            <button class="cart-popup-view-cart-btn">View cart</button>
+          </router-link>
+          <router-link to="/checkout">
+            <button class="cart-popup-check-out-btn" >Check out</button>
+          </router-link>
+          
+          
         </div>
       </div>
     </div>
@@ -27,15 +33,15 @@
   <style>
     .cart-popup {
     position: absolute;
-    top: 110px;
+    top: 90px;
     right: 20px;
     z-index: 4;
     }
 
     .small-triangle {
         width: 0;
-        margin-left: 320px;
-    
+        margin-left: 335px;
+        margin-top: 0;
         border-bottom: 30px solid #D9D9D9;
         border-right: 30px solid transparent;
         border-left: 30px solid transparent;
@@ -49,14 +55,15 @@
     .cart-title {
         display: flex;
         justify-content: space-between;
-        font-size: 28px;
+        font-size: 25px;
         border-bottom: 2px solid black;
-        width: 360px;
+        width: 330px;
         padding-bottom: 8px;
         margin-bottom: 20px;
     }
 
     .cart-text {
+       
         font-weight: 700;
     }
 
@@ -71,14 +78,14 @@
     }
 
     .cart-popup-product-name {
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 500;
     }
 
     .cart-popup-product-detail-container {
         display: flex;
         gap: 80px;
-        font-size: 24px;
+        font-size: 18px;
     }
 
     .cart-popup-product-detail {
@@ -91,16 +98,16 @@
         margin-bottom: 20px;
     }
 
-    #cart-popup-view-cart-btn,
-    #cart-popup-check-out-btn {
+    .cart-popup-view-cart-btn,
+    .cart-popup-check-out-btn {
         background-color: #E8DFCA;
         margin-right: 50px;
-        font-size: 20px;
+        font-size: 18px;
         padding: 5px 20px;
         font-weight: 600;
     }
 
-    #cart-popup-check-out-btn {
+    .cart-popup-check-out-btn {
         margin-right: 0;
     }
   </style>

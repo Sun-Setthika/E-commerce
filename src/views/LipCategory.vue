@@ -166,8 +166,8 @@ export default {
        
         <div class="newsletter">
           <p> Stay in touch to join our newsletter 
-          <br>  Enter your email:
-          <input class="email" type="text">
+          <br> 
+          <input class="input" type="email" placeholder="Enter your email">
           </p>
           
           <!-- <p> Enter your email: </p> -->
