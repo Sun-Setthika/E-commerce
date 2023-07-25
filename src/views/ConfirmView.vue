@@ -53,9 +53,37 @@ export default {
             <hr>
             <p> hello@pariscosmetic.com to me</p>
         </div>
-        <div></div>
+        <div class="desc">
+            <h3>
+                Paris Cosmetic
+            </h3>
+            <div class="order-desc">
+                <p> Hi kenny, we're getting your order ready to be shipping. We will nofity you when it has been sent</p>
+                <router-link to="/cart">
+                    <button class="btn"> View your order </button>
+                </router-link>
+            </div>
+        </div>
+        <hr>
         
-        <div></div>
+        <div class="order-details">
+            <div class="review">
+                <div>
+                    <div>
+                        <img>
+                    </div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="address">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="summary">
+
+            </div>
+        </div>
 
         
 
@@ -99,11 +127,36 @@ export default {
         font-weight: 700px;
     }
 
-    .order-confirmed p{
+    .order-confirmed p,
+    .order-desc
+    {
         margin-top: 0;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700px;
     }
+    
+    .desc{
+        margin-bottom: 18px;
+    }
 
+    h3{
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 20px;
+
+    }
+
+    .btn{
+        background-color: black;
+        color: white;
+        padding: 5px 20px;
+    }
+
+    .order-details{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    
 
 </style>
