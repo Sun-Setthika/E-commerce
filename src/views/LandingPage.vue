@@ -2,9 +2,13 @@
 
 <script>
   import axios from 'axios';
+  import HeaderView from './HeaderView.vue'
 
 export default {
   name: 'LandingPage',
+  components:{
+    HeaderView
+  },
   data() {
     return {
       jsonData: null,
@@ -26,26 +30,7 @@ export default {
 
 <template>
   <div class="body">
-    <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-user"></i> </div>
-          <div class="icons">  <i class="fa fa-shopping-cart"></i> </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a  href="/welcome">Welcome</a>
-        <a href="/">Home</a>
-        <a  href="/lips">Lips</a>
-        <a>Sets</a>
-        <a>About Us</a>
-      </div>
-    </div>
+    <HeaderView/>
 
     <div class="content">
     

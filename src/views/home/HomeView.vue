@@ -1,12 +1,14 @@
 <script>
   import { ref } from 'vue'
   import Popup from '../CartPopUp.vue'
+  import HeaderView from '../HeaderView.vue'
   //ref is a special attribute that is used to give a name to a child component or element so that it can be referenced in the parent component. It is used to access the properties and methods of the child component or element from the parent component.
   
   export default {
     name: 'HomeView',
     components: {
       Popup,
+      HeaderView
     },
     setup() {
       const popupTrigger = ref({
@@ -27,48 +29,7 @@
 
 <template>
   <div class="body">
-    <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-
-        <!-- <a href="/"> -->
-          <h1>Paris Cosmetic</h1>
-        <!-- </a> -->
-        
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> </a>
-            </div>
-          <div class="icons">
-              <!-- <a href="/cart">
-                <i class="fa fa-shopping-cart"></i>
-              </a>  -->
-              <i class="fa fa-shopping-cart" @click="() => togglePopup('buttonTrigger')"></i>
-  
-            <Popup v-if="popupTrigger.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"></Popup>
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a href="/sets">Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-    </div>
+    <HeaderView/>
 
     <div class="content">
     

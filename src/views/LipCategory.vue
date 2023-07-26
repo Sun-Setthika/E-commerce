@@ -1,78 +1,84 @@
 <script>
   import axios from 'axios';
+  import HeaderView from './HeaderView.vue'
 
 export default {
   name: 'LipCategory',
+  components: {
+    HeaderView
+  },
   data() {
-    return {
-      jsonData: null,
-    };
-  },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+        return {
+            products: [],
+            image: null,
+            pro: null,
+        };
+    },
+    watch: {
+        '$route.params.categoryId'(newValue) {
+            this.fetchCategory(newValue);
+        },
+    },
+    created() {
+        this.fetchCategory();
+    },
+    methods: {
+        // route to product page
+        toProductPage(productId) {
+            this.$router.push(`/product/${productId}`)
+        },
+        fetchCategory() {
+            const categoryId = this.$route.params.categoryId;
+            console.log(categoryId);
+            axios.get(`http://localhost:8000/api/products/categories/${categoryId}`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.products = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        fetchProduct() {
+            const productId = this.$route.params.productId;
+            console.log(productId);
+            axios.get(`http://localhost:8000/api/products/${productId}`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.product = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+
+        getImage(imagePath) {
+            return `http://localhost:8000/storage/${imagePath}`
+        }
+    }
 };
 
 </script>
 
-<!-- <script>
-import Header from './HeaderView.vue'
-import Footer from './FooterView.vue'
-
-export default {
-    name: 'ShampooView',
-    components: {
-        Header,
-        Footer
-    }
-}
-</script> -->
 
 <template>
     <div class="body">
-    <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> </a>
-            </div>
-          <div class="icons">
-              <a href="/cart">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-        <p class="dot">&#183;</p>
-        <a href="/">Home</a>
-        <p class="dot">&#183;</p>
-        <a href="/lips">Lips</a>
-        <p class="dot">&#183;</p>
-        <a href="/sets">Sets</a>
-        <p class="dot">&#183;</p>
-        <a>About Us</a>
-      </div>
-    </div>
+      <HeaderView/>
 
     <div class="content">
     
         <div>
         <!-- <div class="path">Home > <span class="current-path">Shampoo</span></div> -->
         <div class="shampoo-products">
+          
+            <div class="shampoo" v-for="product in products" :key="product.id"  @click="toProductPage(product.id)">
+                <!-- <img class="shampoo-image" src="../assets/images/shampoo1.jpg">
+                <div class="shampoo-text">Product name</div>
+                <div class="shampoo-text">Price</div> -->
+                <img class="shampoo-image"  :src="getImage(product.image)">
+                <div class="shampoo-text">{{ product.name }}</div>
+                <div class="shampoo-text">$25,00</div>
+            </div>
+        
+
           <router-link to="/product">
           <button class="product-btn">
             <div class="shampoo">
@@ -87,76 +93,7 @@ export default {
                 <div class="shampoo-text">Mousse de Rouge</div>
                 <div class="shampoo-text">Price</div>
             </div> -->
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/winter-red.jpg">
-                <div class="shampoo-text">The Summer Red</div>
-                <div class="shampoo-text">Price</div>
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/lip.jpg">
-                <div class="shampoo-text">Nude Lip Mousse</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/pivoine.jpg">
-                <div class="shampoo-text">Pivoine</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/daphne.jpg">
-                <div class="shampoo-text">daphne</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/frambroise.jpg">
-                <div class="shampoo-text">Frambroise</div>
-                <div class="shampoo-text">Price</div>
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/rosier.jpg">
-                <div class="shampoo-text">Mousse de rosier</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/moouse.jpg">
-                <div class="shampoo-text">Mousse de praline</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/rouge.jpg">
-                <div class="shampoo-text">Maroon</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/tulip.jpg">
-                <div class="shampoo-text">Tulip</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/nude-and-red.jpg">
-                <div class="shampoo-text">Crayons de garance</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/nude-pencils.jpg">
-                <div class="shampoo-text">Crayons de nude</div>
-                <div class="shampoo-text">Price</div>
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/eye.jpg">
-                <div class="shampoo-text">Lip balm</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/eye1.jpg">
-                <div class="shampoo-text">Lip scrub</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
-            <div class="shampoo">
-                <img class="shampoo-image" src="../assets/css/images/brush.jpg">
-                <div class="shampoo-text">Lip brush</div>
-                <!-- <div class="shampoo-text">Price</div> -->
-            </div>
+            
 
             
         </div>

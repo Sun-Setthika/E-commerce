@@ -29,10 +29,15 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/product',
+      path: '/product/:productId',
       name: 'product',
       component: () => import('../views/ProductsView.vue')
     },
+    // {
+    //   path: '/product/:productId/:productSizeId',
+    //   name: 'productWithSize',
+    //   component: () => import('../views/ProductsView.vue')
+    // },
     {
       path: '/welcome',
       name: 'LandingPage',
@@ -79,7 +84,7 @@ const router = createRouter({
       component: ConfirmView
     },
     {
-      path: '/lips',
+      path: '/productcategory/:categoryId',
       name: 'LipCategory',
       component: LipCategory
     },

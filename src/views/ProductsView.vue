@@ -1,88 +1,63 @@
 <template>
-  <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> </a>
-          </div>
-          <div class="icons">
-              <a href="/cart">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
+  <HeaderView/>
+   <form @submit.prevent="addToCart">
+        <p class="path"> Home > Lips > <span class="customer-info"> {{ product.name }} </span> </p>
+        <div id="product-page">
+            <div id="product-image">
+                <div id="product-subimage">
+                    <img id="product-subimage1" :src="getImage(product.image2)">
+                    <img id="product-subimage2" :src="getImage(product.image3)">
+                    <img id="product-subimage3" :src="getImage(product.image4)">
+                </div>
+                <img id="product-mainimage" :src="getImage(product.image)">
+
+            </div>
+
+            <div class="product-details">
+                <div class="product-name-price">
+                    <div class="product-name-product-page"> {{ product.name }}</div>
+                    <div class="product-price-product-page">$25.00</div>
+                </div>
+                <div class="product-size-scent-quantity">
+                    <div class="product-page-dropdown-container">
+                        <div class="product-page-dropdown-text">Size</div>
+                        <select class="product-page-dropdown" v-model="selectedSize">
+                            <option v-for="size in productSize" :key="size.id" :value="size.id">{{ size.name }}</option>
+                        </select>
+                        <!-- <select class="product-page-dropdown">
+                            <option value="mini"> Mini </option>
+                            <option value="grande"> Grande </option>
+                            
+                        </select> -->
+                    </div>
+                    <div class="product-page-dropdown-container">
+                        <div class="product-page-dropdown-text" > Color </div>
+                        <select class="product-page-dropdown" v-model="selectedColor">
+                            <option value="rouge"> Rouge </option>
+                            <option value="rose"> Rose </option>
+                            
+                        </select>
+                    </div>
+                    <div>
+                        <label for="quantity">Quantity
+                            <input id="quantity" name="quantity" class="input-line" v-model="quantity">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="add-cart-btn-container">
+                    <button id="add-cart-btn" @click="addToCart">Add to cart</button>
+                </div>
+
+                <div class="product-page-product-description-container">
+                    <div class="product-page-product-description">Description</div>
+                    <div class="product-page-product-description-text">Pigmented and airy, the Mousse de Rouge delicately
+                        enhances lips and cheekbones. Its matte and
+                        velvety finish brings a touch of chic to your complexion.</div>
+                </div>
             </div>
         </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-        <p class="dot">&#183;</p>
-        <a href="/">Home</a>
-        <p class="dot">&#183;</p>
-        <a href="/lips">Lips</a>
-        <p class="dot">&#183;</p>
-        <a href="/sets">Sets</a>
-        <p class="dot">&#183;</p>
-        <a>About Us</a>
-      </div>
-    </div>
-
-    <p class="path"> Home > Lips > <span class="customer-info"> La Moouse de Rouge Framboise </span> </p>
-  <div id="product-page">
-      <div id="product-image">
-          <div id="product-subimage">
-              <img id="product-subimage1" src="../assets/css/images/framboise.jpg">
-              <img id="product-subimage2" src="../assets/css/images/subimage1.jpg">
-              <img id="product-subimage3" src="../assets/css/images/lipset4.jpg">
-          </div>
-          <img id="product-mainimage" src="../assets/css/images/framboise.jpg">
-
-      </div>
-
-      <div class="product-details">
-          <div class="product-name-price">
-              <div class="product-name-product-page">Moouse de Rouge Framboise</div>
-              <div class="product-price-product-page">20$</div>
-          </div>
-          <div class="product-size-scent-quantity">
-              <div class="product-page-dropdown-container">
-                  <div class="product-page-dropdown-text">Size</div>
-                  <select class="product-page-dropdown">
-                      <option value="s"> Mini </option>
-                      <option value="m"> Grande </option>
-                      
-                  </select>
-              </div>
-              <div class="product-page-dropdown-container">
-                  <div class="product-page-dropdown-text"> Color </div>
-                  <select class="product-page-dropdown">
-                      <option value="ginger"> Rouge </option>
-                      <option value="strawberry"> Rose </option>
-                      
-                  </select>
-              </div>
-              <div>
-                  <label for="quantity">Quantity
-                      <input id="quantity" name="quantity" class="input-line">
-                  </label>
-              </div>
-          </div>
-
-          <div class="add-cart-btn-container">
-              <button id="add-cart-btn">Add to cart</button>
-          </div>
-
-          <div class="product-page-product-description-container">
-              <div class="product-page-product-description">Description</div>
-              <div class="product-page-product-description-text">Pigmented and airy, the Mousse de Rouge delicately
-                  enhances lips and cheekbones. Its matte and
-                  velvety finish brings a touch of chic to your complexion.</div>
-          </div>
-      </div>
-  </div>
+    </form> 
 
   <div class="product-page-recommend-product">
       <img src="../assets/css/images/lipset2.jpg">
@@ -251,47 +226,11 @@
         
     }
 
-
-
-
-
-
-
-
-
-
-/* .carousel img {
-    width: 400px;
-    height: 400px;
-}
-
-.wrapper {
-    position: relative;
-    display: flex;
-}
-
-#left-arrow {
-    position: absolute;
-    top: 45%;
-    left: -10px;
-} 
-
-#right-arrow {
-    position: absolute;
-    top: 45%;
-    right: -10px;
-}
-
-#product-subimage1,
-#product-subimage2,
-#product-subimage3 {
-    display: hidden;
-} */
-
 </style>
 
 <script>
-import Header from './HeaderView.vue'
+import axios from 'axios'
+import HeaderView from './HeaderView.vue'
 
 
 
@@ -303,12 +242,84 @@ let productSubImage3 = document.getElementById('product-subimage3');
 export default {
   name: 'ProductView',
   components: {
-      Header
+      HeaderView
+  },
+  data() {
+    return {
+      product: [], // Holds the details of the fetched product
+      productSize: [], 
+      selectedSize: '',
+      selectedColor: '',
+      quantity: 1,
+    };
+  },
+  created() {
+    this.fetchProduct();
+    this.fetchProductSize();
   },
   methods: {
+    fetchProduct() {
+      const productId = this.$route.params.productId;
+      axios
+        .get(`http://localhost:8000/api/products/${productId}`)
+        .then(response => {
+          this.product = response.data; // Save the fetched product details in the 'product' data property
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    fetchProductSize() {
+        console.log('Fetching product sizes...');
+        const productId = this.$route.params.productId;
+        axios
+        .get(`http://localhost:8000/api/size/products`)
+        .then(response => {
+            console.log(response)
+            this.productSize = response.data; // Update the assignment to response.data directly
+            // console.log('Product sizes:', this.productSize);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+  },
+    getImage(imagePath) {
+            return `http://localhost:8000/storage/${imagePath}`
+        },
+        addToCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    cart.push({
+      id: this.product.id,
+      name: this.product.name,
+      color: this.selectedColor,
+      size: this.selectedSize,
+      quantity: this.quantity,
+      user_id: '1', // Use the actual user ID from your authentication system
+      // Add other product details as needed
+    });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Cart Data:', cart);
+
+    this.sendToBackend(cart)
+      .then(() => {
+        alert('Product added to cart!');
+        this.$router.push('/cart');
+      })
+      .catch(error => {
+        console.error('Error saving cart data to the database:', error);
+        // Handle the error or show an error message to the user
+      });
+  },
+
+    sendToBackend(cartData) {
+      return axios.post('http://localhost:8000/api/carts', { cart: cartData });
+    },
   }
-}
+  
+};
+
 
 </script>
 
