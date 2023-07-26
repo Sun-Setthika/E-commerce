@@ -9,6 +9,17 @@ class Cart extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
+    protected $fillable = [
+        'product_id',
+        'product_size_id',
+        'quantity',
+        'price',
+        'color_id',
+        // Add other attributes as needed
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,4 +34,10 @@ class Cart extends Model
     {
         return $this->belongsTo(Color::class);
     }
+
+    public function productSizes()
+    {
+        return $this->hasMany(ProductSize::class);
+    }
+
 }

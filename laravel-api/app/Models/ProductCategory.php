@@ -9,7 +9,9 @@ class ProductCategory extends Model
 {
     use HasFactory;
 
-    protected $gaurded = [];
+    protected $fillable = [
+        "name",
+    ];
 
     public $timestamps = false;
 

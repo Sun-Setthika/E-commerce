@@ -9,16 +9,19 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $gaurded = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'image2',
+        'image3',
+        'image4',
+        "category_id"
+    ];
 
     public function productCategory()
     {
         return $this->belongsTo(ProductCategory::class, 'category_id');
-    }
-
-    public function color()
-    {
-        return $this->hasMany(Color::class);
     }
 
     public function cart()

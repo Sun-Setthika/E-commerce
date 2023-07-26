@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('image');
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('category_id');
 
