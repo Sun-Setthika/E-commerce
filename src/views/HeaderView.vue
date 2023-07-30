@@ -63,7 +63,7 @@
   </style>
   
 <script>
-  import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import axios from 'axios';
 import Popup from './CartPopUp.vue';
 
@@ -78,7 +78,7 @@ export default {
   components: {
     Popup,
   },
-  setup(props) {
+  setup() {
     const popupTrigger = ref({
       buttonTrigger: false,
     });
@@ -87,20 +87,23 @@ export default {
       popupTrigger.value[trigger] = !popupTrigger.value[trigger];
     };
 
-    const localCartCount = ref(props.cartCount); // Initialize localCartCount with the initial value of cartCount prop
+    const cartCount = ref(0);
 
-    // Watch for changes in the cartCount prop and update localCartCount accordingly
-    watch(
-      () => props.cartCount,
-      (newCartCount) => {
-        localCartCount.value = newCartCount;
-      }
-    );
+    const updateCartCount = () => {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      cartCount.value = cartItems.length; // Set the cartCount based on the number of items in the cart
+    };
+
+    // Watch for changes in cartItems in localStorage and update cartCount accordingly
+    window.addEventListener('storage', updateCartCount);
+
+    // Call the updateCartCount function once when the component is mounted
+    onMounted(updateCartCount);
 
     return {
       popupTrigger,
       togglePopup,
-      localCartCount, // Expose the localCartCount to the template
+      cartCount, // Expose the cartCount to the template
     };
   },
   data() {
