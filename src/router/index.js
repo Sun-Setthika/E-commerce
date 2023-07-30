@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/home/HomeView.vue'
+import HomeView from '../views/HomeView.vue'
 import LandingPage from '../views/LandingPage.vue'
 import LipCategory from '../views/LipCategory.vue'
 import Sets from '../views/Sets.vue'

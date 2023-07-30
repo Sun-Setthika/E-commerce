@@ -79,7 +79,7 @@ export default {
             </div>
         
 
-          <router-link to="/product">
+          <!-- <router-link to="/product">
           <button class="product-btn">
             <div class="shampoo">
                 <img class="shampoo-image" src="../assets/css/images/framboise.jpg">
@@ -87,7 +87,7 @@ export default {
                 <div class="shampoo-text">Price</div>
             </div>
           </button>
-        </router-link>
+        </router-link> -->
             <!-- <div class="shampoo">
                 <img class="shampoo-image" src="../assets/css/images/framboise.jpg">
                 <div class="shampoo-text">Mousse de Rouge</div>

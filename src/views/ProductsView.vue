@@ -33,8 +33,8 @@
                     <div class="product-page-dropdown-container">
                         <div class="product-page-dropdown-text" > Color </div>
                         <select class="product-page-dropdown" v-model="selectedColor">
-                            <option value="rouge"> Rouge </option>
-                            <option value="rose"> Rose </option>
+                            <option value="1"> Rouge </option>
+                            <option value="2"> Rose </option>
                             
                         </select>
                     </div>
@@ -44,9 +44,10 @@
                         </label>
                     </div>
                 </div>
-
+            
+                
                 <div class="add-cart-btn-container">
-                    <button id="add-cart-btn" @click="addToCart">Add to cart</button>
+                    <button id="add-cart-btn" type="submit">Add to cart</button>
                 </div>
 
                 <div class="product-page-product-description-container">
@@ -251,6 +252,7 @@ export default {
       selectedSize: '',
       selectedColor: '',
       quantity: 1,
+
     };
   },
   created() {
@@ -259,9 +261,9 @@ export default {
   },
   methods: {
     fetchProduct() {
-      const productId = this.$route.params.productId;
+       this.productId = this.$route.params.productId;
       axios
-        .get(`http://localhost:8000/api/products/${productId}`)
+        .get(`http://localhost:8000/api/products/${this.productId}`)
         .then(response => {
           this.product = response.data; // Save the fetched product details in the 'product' data property
         })
@@ -286,36 +288,37 @@ export default {
     getImage(imagePath) {
             return `http://localhost:8000/storage/${imagePath}`
         },
-        addToCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    addToCart() {
+    const productId = this.$route.params.productId;
+    const cart = {
+        user_id: '1',
+        product_id: productId, // Use "product_id" instead of "productId"
+        color_id: this.selectedColor, // Use "color_id" instead of "colorId"
+        status: 'billed',
+        product_size_id: this.selectedSize,
+        quantity: this.quantity,
+    };
 
-    cart.push({
-      id: this.product.id,
-      name: this.product.name,
-      color: this.selectedColor,
-      size: this.selectedSize,
-      quantity: this.quantity,
-      user_id: '1', // Use the actual user ID from your authentication system
-      // Add other product details as needed
-    });
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('Cart Data:', cart);
-
-    this.sendToBackend(cart)
-      .then(() => {
+    // console.log(cart);
+    axios
+        .post('http://localhost:8000/api/carts', cart)
+        .then(() => {
         alert('Product added to cart!');
         this.$router.push('/cart');
-      })
-      .catch(error => {
+        })
+        .catch(error => {
         console.error('Error saving cart data to the database:', error);
         // Handle the error or show an error message to the user
-      });
-  },
+        });
 
-    sendToBackend(cartData) {
-      return axios.post('http://localhost:8000/api/carts', { cart: cartData });
+        //save into local storage
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(cart);
+        localStorage.setItem('cartItem', JSON.stringify(cartItems));
     },
+
+    
+        
   }
   
 };

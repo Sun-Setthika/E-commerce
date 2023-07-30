@@ -1,8 +1,8 @@
-<!-- <script>
+<script>
   import { ref } from 'vue'
-  import Popup from '../CartPopUp.vue'
-  import HeaderView from '../HeaderView.vue'
-  import Product from '../ProductsView.vue'
+  import Popup from './CartPopUp.vue'
+  import HeaderView from './HeaderView.vue'
+  import Product from './ProductsView.vue'
   
   //ref is a special attribute that is used to give a name to a child component or element so that it can be referenced in the parent component. It is used to access the properties and methods of the child component or element from the parent component.
   
@@ -41,15 +41,15 @@
 
 <template>
   <div class="body">
-    <HeaderView :cartCount="cartCount"/>
+    <HeaderView/>
 
     <div class="content">
     
       <div class="hero">
         <div class="hero-div">
-          <img class="hero-img" src="../../assets/css/images/hero-image.jpg">
-          <img class="hero-img-hidden" src="../../assets/css/images/hero-im.jpg">
-          <img class="hero-img-hidden2" src="../../assets/css/images/hero-ig.jpg">
+          <img class="hero-img" src="../assets/css/images/hero-image.jpg">
+          <img class="hero-img-hidden" src="../assets/css/images/hero-im.jpg">
+          <img class="hero-img-hidden2" src="../assets/css/images/hero-ig.jpg">
         </div>
       </div>
       <div class="best">
@@ -63,7 +63,7 @@
         <router-link to="/product">
           <button class="lip-btn">
           <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/framboise.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/framboise.jpg">
             <div class="bestselling-text">La mousse de rouge Maroon</div>
             <div class="bestselling-text">$25,00</div>
           </div>
@@ -72,27 +72,27 @@
         
         
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/brush.jpg">
             <div class="bestselling-text">La mousse de rouge Daphne</div>
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/cafe-gourmand.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/cafe-gourmand.jpg">
             <div class="bestselling-text">Le set cafe cafe-gourmand</div>
             <div class="bestselling-text">$75,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/frambroise.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/frambroise.jpg">
             <div class="bestselling-text">La mousse de rouge Hortenese</div>
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/rosier.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/rosier.jpg">
             <div class="bestselling-text">La mousse de rouge Rosier</div>
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/nude-pencils.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/nude-pencils.jpg">
             <div class="bestselling-text">Les Nudes crayons</div>
             <div class="bestselling-text">$35,00</div>
         </div>
@@ -101,7 +101,7 @@
       <div>
         <div class="quote-div">
           <div class="qdiv">
-            <img class="quote" src="../../assets/css/images/quote.jpg">
+            <img class="quote" src="../assets/css/images/quote.jpg">
           </div>
 
           <div class="best">
@@ -114,17 +114,17 @@
       <div>
         <div class="bestselling-products">
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/brush.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/brush.jpg">
             <div class="bestselling-text">La mousse de rouge Maroon</div>
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/set.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/set.jpg">
             <div class="bestselling-text">La mousse de rouge Daphne</div>
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/set1.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/set1.jpg">
             <div class="bestselling-text">Le set cafe cafe-gourmand</div>
             <div class="bestselling-text">$75,00</div>
         </div>
@@ -134,12 +134,12 @@
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/set4.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/set4.jpg">
             <div class="bestselling-text">La mousse de rouge Rosier</div>
             <div class="bestselling-text">$25,00</div>
         </div>
         <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/lip.jpg">
+            <img class="bestselling-shampoo" src="../assets/css/images/lip.jpg">
             <div class="bestselling-text">Les Nudes crayons</div>
             <div class="bestselling-text">$35,00</div>
         </div>
@@ -155,7 +155,7 @@
           <i class="fa fa-user"></i>
           <p>  a Mousse de Rouge, our signature product with a creamy texture and velvet finish, 
           accompanied by our double-ended Lip Brush.</p>
-          <img src="../../assets/css/images/nude-and-red.jpg">
+          <img src="../assets/css/images/nude-and-red.jpg">
         </div>
         <div class="newsletter">
           <p> Stay in touch to join our newsletter 
@@ -596,4 +596,4 @@
 </style>
 
 
- -->
+
