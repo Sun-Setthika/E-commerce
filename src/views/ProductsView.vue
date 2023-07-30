@@ -1,5 +1,5 @@
 <template>
-  <HeaderView/>
+  <HeaderView :cartCount="cartCount"/>
    <form @submit.prevent="addToCart">
         <p class="path"> Home > Lips > <span class="customer-info"> {{ product.name }} </span> </p>
         <div id="product-page">
@@ -252,12 +252,14 @@ export default {
       selectedSize: '',
       selectedColor: '',
       quantity: 1,
+      cartCount: 0,
 
     };
   },
   created() {
     this.fetchProduct();
     this.fetchProductSize();
+    this.updateCartCount();
   },
   methods: {
     fetchProduct() {
@@ -314,9 +316,12 @@ export default {
         //save into local storage
         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         cartItems.push(cart);
-        localStorage.setItem('cartItem', JSON.stringify(cartItems));
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     },
-
+    updateCartCount() {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      this.cartCount = cartItems.length; // Set the cartCount based on the number of items in the cart
+    },
     
         
   }
