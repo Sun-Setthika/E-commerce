@@ -1,58 +1,28 @@
 <script>
   import axios from 'axios';
+  import HeaderView from './HeaderView.vue';
 
-export default {
-  name: 'Cart',
-  data() {
-    return {
-      jsonData: null,
-    };
-  },
-  mounted() {
-    
-  },
+  export default {
+    name: 'Cart',
+    components: {
+      HeaderView
+    },
+    data(){
+      return{
+        cartItems: []
+      };
+    },
+    created() {
+      this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    }
+
 };
 
 </script>
 
 <template>
-    <div>
-      <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-              <a href="/">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a>Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-    </div>
+    <div class="body1">
+      <HeaderView/>
 
     <!-- content -->
     <div class="content">
@@ -64,7 +34,7 @@ export default {
                 <p> Price </p>
                 <p> Quantity </p>
             </div>
-            <div class="cart-items">
+            <div class="cart-items" v-for="item in cartItems" :key="item.id">
               <div class="cart-details">
                 <div class="product-img">
                 <img src="../assets/css/images/framboise.jpg" class="cart-product">
@@ -78,44 +48,8 @@ export default {
                 <div class="quantity"> 1 </div>
             </div>
 
-            <div class="cart-details">
-                <div class="product-img">
-                <img src="../assets/css/images/framboise.jpg" class="cart-product">
-                <div class="product-desc">
-                    <div class="cart-text">La mousse de rouge Framboise</div>
-                    <div class="cart-text"> Color: Framboise </div>
-                </div>
-                
-                </div>
-                <div class="price"> $20.00</div>
-                <div class="quantity"> 1 </div>
-            </div>
 
-            <div class="cart-details">
-                <div class="product-img">
-                <img src="../assets/css/images/framboise.jpg" class="cart-product">
-                <div class="product-desc">
-                    <div class="cart-text">La mousse de rouge Framboise</div>
-                    <div class="cart-text"> Color: Framboise </div>
-                </div>
-                
-                </div>
-                <div class="price"> $20.00</div>
-                <div class="quantity"> 1 </div>
-            </div>
-
-            <div class="cart-details">
-                <div class="product-img">
-                <img src="../assets/css/images/framboise.jpg" class="cart-product">
-                <div class="product-desc">
-                    <div class="cart-text">La mousse de rouge Framboise</div>
-                    <div class="cart-text"> Color: Framboise </div>
-                </div>
-                
-                </div>
-                <div class="price"> $20.00</div>
-                <div class="quantity"> 1 </div>
-            </div>
+            
             </div>
             
 
@@ -177,6 +111,17 @@ export default {
 
 <style scoped>
 
+  /* .body1{
+    width: 100%;
+    background-color: #F6F5EC;
+    margin: 0;
+    padding: 0;
+    overflow-x: scroll;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  } */
+
   hr{
     height: 2px;
     background-color: black;
@@ -185,11 +130,12 @@ export default {
   .content{
     
     padding: 0 30px;
-    height: 520px;
+    height: 550px;
     display: flex;
     justify-content: space-between;
     column-gap: 20px;
     overflow-y: hidden;
+    
   }
 
   h3{

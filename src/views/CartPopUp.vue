@@ -6,19 +6,24 @@
           <div class="cart-text">Items added to cart</div>
           <i id="close-cart-btn" @click="togglePopup()" class="fa-solid fa-xmark"></i>
         </div>
-        <div>
+        <div v-if="latestCart  && latestCart.product " >
           <!-- <div class="cart-popup-product-name">MOUSSE DE ROUGE</div> -->
           <ul class="cart-popup-product-list">
-            <li class="cart-popup-product-name">MOUSSE DE ROUGE</li>
+            <li class="cart-popup-product-name"> {{ latestCart.product.name }} </li>
             <li class="cart-popup-product-detail-container">
-              <div class="cart-popup-product-detail">QT: 1</div>
-              <div class="cart-popup-product-detail">| $20</div>
+              <div class="cart-popup-product-detail">QT: {{ latestCart.quantity }}</div>
+              <div class="cart-popup-product-detail">| $ {{ latestCart.price }}</div>
             </li>
           </ul>
         </div>
+        <div v-else>
+          <!-- Display a message when the latestCart object is null -->
+          <p>No items in the cart.</p>
+      </div>
+        
         <div class="cart-popup-btn-container">
           <router-link to="/cart">
-            <button class="cart-popup-view-cart-btn">View cart</button>
+            <button class="cart-popup-view-cart-btn">View more</button>
           </router-link>
           <router-link to="/checkout">
             <button class="cart-popup-check-out-btn" >Check out</button>
@@ -33,8 +38,8 @@
   <style>
     .cart-popup {
     position: absolute;
-    top: 90px;
-    right: 20px;
+    top: 30px;
+    right: -20px;
     z-index: 4;
     }
 
@@ -74,11 +79,11 @@
     .cart-popup-product-list {
         list-style-type: none;
         padding: 0;
-        padding-left: 20px;
+        padding-left: 15px;
     }
 
     .cart-popup-product-name {
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 500;
     }
 
@@ -90,6 +95,7 @@
 
     .cart-popup-product-detail {
         font-weight: 500;
+        font-size: 20px;
     }
 
     .cart-popup-btn-container {
@@ -113,7 +119,30 @@
   </style>
     
   <script>
+  import axios from 'axios';
+
   export default {
-    props: ['togglePopup']
+    props: ['togglePopup'],
+    data() {
+      return {
+        latestCart: [],
+      };
+    },
+    created(){
+      this.fetchLatestCartId();
+    },
+    methods: {
+      fetchLatestCartId(){
+            axios.get(`http://localhost:8000/api/carts/latest-cart-id`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.latestCart = response.data.latestCartId;
+                    console.log(this.latestCart);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      }
+    }
+
   };
   </script>
