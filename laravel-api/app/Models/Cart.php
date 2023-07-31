@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Color;
+use App\Models\User;
+use App\Models\ProductSize;
+use App\Models\Product;
 
 class Cart extends Model
 {
@@ -12,11 +16,13 @@ class Cart extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'quantity',
+        'status',
         'product_id',
         'product_size_id',
-        'quantity',
-        'price',
+        'user_id',
         'color_id',
+        'price',
         // Add other attributes as needed
     ];
 

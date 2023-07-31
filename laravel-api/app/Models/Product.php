@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductCategory;
+use App\Models\Cart;
+use App\Models\ProductDetail;
+use App\Models\OrderDetail;
 
 class Product extends Model
 {

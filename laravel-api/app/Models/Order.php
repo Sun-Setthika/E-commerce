@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\OrderDetail;
+use App\Models\Discount;
+use App\Models\ShippingMethod;
 
 class Order extends Model
 {

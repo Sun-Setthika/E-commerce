@@ -17,7 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return Cart::all();
     }
 
     /**
@@ -32,38 +32,52 @@ class CartController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $cartData = $request->input('cart');
-    Log::info('Cart Data:', ['cartData' => $cartData]);
-
-    foreach ($cartData as $cartItemData) {
-        // Find or create the color with the given name
-        $color = Color::firstOrCreate(['name' => $cartItemData['color']]);
-        $product = Product::firstOrCreate(['name' => $cartItemData['name']]);
-        $size = ProductSize::firstOrCreate(['name' => $cartItemData['size']]);
-        // Save the cart item along with the associated color ID
-        $cartItem = new Cart([
-            'product_id' => $product->id,
-            'quantity' => $cartItemData['quantity'],
-            'color_id' => $color->id, // Associate the color ID with the cart item
-            'product_size_id' => $size->id,
-            'status' => 'billed',
-            'user_id' => '1',
-        ]);
-        $cartItem->save();
-    }
-
-    return response()->json(['message' => 'Cart data saved successfully']);
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
     {
-        //
+        try {
+            return Cart::create([
+                'user_id' => $request->user_id,
+                'product_id' => $request->product_id,
+                'color_id' => $request->color_id,
+                'product_size_id' => $request->product_size_id,
+                'quantity' => $request->quantity,
+                'status' => $request->status,
+            ]);
+                // $cart = new Cart();
+                // $cart->user_id = $request->user_id,
+                // $cart->product_id => $request->product_id,
+                // 'color_id' => $request->color_id,
+                // 'product_size_id' => $request->product_size_id,
+                // 'quantity' => $request->quantity,
+                // 'status' => $request->status,
+
+        } catch (\Exception $e) {
+            // Log the error or return a specific error response
+            return response()->json(['error' => 'Failed to create cart.'], 500);
+        }
     }
+
+    public function getLatestCartId()
+    {
+        try {
+            $latestCart = Cart::with('product')->orderBy('id', 'desc')->first();
+            if ($latestCart) {
+                // return Cart::find($latestCart)->first();
+                 return response()->json(['latestCartId' => $latestCart]);
+            } else {
+                return response()->json(['message' => 'No carts found.'], 404);
+            }
+        } catch (\Exception $e) {
+            // Log the error or return a specific error response
+            return response()->json(['error' => 'Failed to fetch latest cart ID.'], 500);
+        }
+    }
+
+
+    
+    // public function show(string $id)
+    // {
+    //     return Cart::find($id);
+    // }
 
     /**
      * Show the form for editing the specified resource.

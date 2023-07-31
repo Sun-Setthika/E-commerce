@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductCategoryController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\CartController;
@@ -50,4 +50,6 @@ Route::get('/products/colors', [ColorController::class, 'index']);
 Route::post('/products/colors', [ColorController::class, 'store']);
 Route::delete('/products/colors/{id}', [ColorController::class, 'destroy']);
 
+Route::get('/carts/all',  [CartController::class, 'index']);
 Route::post('/carts', [CartController::class, 'store']);
+Route::get('/carts/latest-cart-id',  [CartController::class, 'getLatestCartId']);
