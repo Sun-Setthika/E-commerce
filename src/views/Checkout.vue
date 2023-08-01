@@ -1,46 +1,51 @@
 <script>
   import axios from 'axios';
 
-export default {
-  name: 'Cart',
-  data() {
-    return {
-      email: '',
-      firstname: '',
-      lastname: '',
-      phone_number: '',
-      company: '',
-      address: '',
-      country: '',
-      state: '',
-      zip: ''
-    };
-  },
-  methods: {
-    addToCustomerInfo(){
-      const customerInfo = {
-        address: this.address,
-        phone_number: this.phone_number,
-        country: this.country,
-        state: this.state,
-        zip: thiz.zip,
+  export default {
+    name: 'Cart',
+    data() {
+      return {
+        email: '',
+        // firstname: '',
+        // lastname: '',
+        phone_number: '',
+        // company: '',
+        address: '',
+        country: '',
+        state: '',
+        zip: '',
+        subtotal: 0,
       };
-      axios
-        .post('http://localhost:8000/api/carts/customerInfos', customerInfo)
-        .then(() => {
-        alert('Information added to customerInfo!');
-        this.$router.push('/paymentmethod');
-        })
-        .catch(error => {
-        console.error('Error saving cart data to the database:', error);
-        // Handle the error or show an error message to the user
-        });
-   
-      
-    }
-  },
- 
-};
+    },
+    created(){
+      this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || []
+    },
+    methods: {
+      addToCustomerInfo(){
+        const customerInfo = {
+          address: this.address,
+          phone_number: this.phone_number,
+          country: this.country,
+          state: this.state,
+          zip: this.zip,
+        };
+        axios
+          .post('http://localhost:8000/api/carts/customerInfo', customerInfo)
+          .then(() => {
+            console.log(customerInfo);
+          alert('Information added to customerInfo!');
+          this.$router.push('/shippingview');
+          })
+          .catch(error => {
+          console.error('Error saving cart data to the database:', error);
+          // Handle the error or show an error message to the user
+          });
+    
+        
+      }
+    },
+  
+  };
 
 </script>
 
@@ -91,7 +96,7 @@ export default {
             <h3> Customer Information </h3>
             
 
-            <form>
+            <form @submit.prevent="addToCustomerInfo">
               <input type="email" name="email" class="input-line" placeholder="Email"  v-model="email">
               <hr>
               <h3> Shipping Information </h3>
@@ -151,7 +156,7 @@ export default {
             <form>
               <div class=" summary-details">
                 <p> Subtotal </p>
-                <p> $20.00 </p>
+                <p> $ {{subtotal.toFixed(2)}} </p>
               </div>
               <div  class=" summary-details">
                 <p> Shipping </p>
@@ -162,7 +167,7 @@ export default {
                 <p> - </p>
               </div>
               <hr>
-              <div class="discount-details">
+              <!-- <div class="discount-details">
                 <div>
                   <p> Gift card or discount code </p>
                 </div>
@@ -170,12 +175,12 @@ export default {
                   <input type="text" name="discount-code" class="discount-input"> 
                   <button class="btn"> Apply </button>
                 </div>
-              </div>
+              </div> -->
           </form>
-            <hr>
+            <!-- <hr> -->
             <div class="summary-details">
               <p class="total"> Total </p>
-              <p class="total"> $20.00 </p>
+              <p class="total"> $ {{subtotal.toFixed(2)}} </p>
             </div>
             <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>
@@ -316,8 +321,9 @@ export default {
     margin-bottom: 0;
   }
 
-  .summary-details .total{
-    font-weight: bold;
+  .summary-details p{
+    font-size: 18px;
+    font-weight: 600px;
   }
 
   .discount{
@@ -336,6 +342,11 @@ export default {
     height: 28px;
     width: 380px;
     border: white;
+  }
+
+  .summary .total{
+    font-size: 20px;
+    font-weight: bold;
   }
 
   /* .btn{

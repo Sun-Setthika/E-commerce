@@ -1,100 +1,106 @@
 <script>
  import { ref } from 'vue'
-import Popup from '../views/CartPopUp.vue'
+ import HeaderView from './HeaderView.vue';
+ import axios from 'axios';
 
 export default {
   name: 'ShippingView',
   components: {
-      Popup,
+     HeaderView
     },
-    setup() {
-      const popupTrigger = ref({
-        buttonTrigger: false,
-      })
-  
-      const togglePopup = (trigger) => {
-        popupTrigger.value[trigger] = !popupTrigger.value[trigger]
-      }
-  
-      return {
-        popupTrigger,
-        togglePopup,
-      }
-    },
+  data(){
+    return{
+      latestAddress: [],
+      ShippingMethod: [],
+      selectedShippingMethod: '',
+      loading: true,
+    };
+  },
+  created(){
+    this.fetchLatestAddressId(),
+    this.fetchShippingMethod(),
+    this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || []
+  },
+  methods:{
+    fetchLatestAddressId(){
+            axios.get(`http://localhost:8000/api/carts/customerInfo/lastest-address-id`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.latestAddress = response.data.latestAddressId;
+                    console.log(this.latestAddress);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+      fetchShippingMethod(){
+            axios.get(`http://localhost:8000/api/carts/customerInfo/shippingMethods`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.ShippingMethod = response.data;
+                    // console.log(this.shippingMethod);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+      getShippingMethod(){
+        if(this.selectedShippingMethod){
+          console.log('Selected Shipping Method:', this.selectedShippingMethod);
+          localStorage.setItem('shippingmethod', this.selectedShippingMethod);
+          this.loading = false;
+
+        }
+        
+      },
+  },
+    
 };
 </script>
 
 <template>
-  <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-            <i class="fa fa-shopping-cart" @click="() => togglePopup('buttonTrigger')"></i>
   
-            <Popup v-if="popupTrigger.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"></Popup>
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a>Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-  </div>
+   <HeaderView/>
 
-  <div class="path"> Cart > <span class="current-path"> Customer Information </span> > Shipping Information > Payment
+  <div class="path"> Cart >  Customer Information > <span class="current-path"> Shipping Information </span> > Payment
     method </div>
   <!-- content -->
   <div class="shipping-page-content">
-    <div class="shipping">
-      <div class="shipping-address-info">
-        <div class="shipping-address"> <span class="current-path"> Shipping address </span> </div>
-        <div class="shipping-address">12 Waldo Point Road, Minshauken NY 11200</div>
+    
+      <div class="shipping">
+        <div class="shipping-address-info">
+          <div class="shipping-address"> <span class="current-path"> Shipping address </span> </div>
+          <div class="shipping-address"> {{ latestAddress.address }}</div>
+        </div>
+        <!-- <form @submit.prevent="getShippingMethod"> -->
+        <div>
+          <div class="shipping-method">Shipping Method</div>
+          <div  v-for="method in ShippingMethod" :key="method.id" class="shipping-type">
+            <div>
+              <input type="radio" :id="method.id" :name="'shippingMethod'" :value="method.type" v-model="selectedShippingMethod">
+              <label :for="method.id">{{ method.type }}</label><br>
+            </div>
+          
+            <div class="">
+              <p :for="method.id">$ {{ method.price }}0</p>
+            </div>
+            
+          </div>
+
+        <hr>
+
+        <div class="shipping-footer">
+          <router-link to="/checkout" tag="div" class="return-cart">
+            &lt; Return to Shipping Information
+          </router-link>
+          <router-link to="/paymentmethod" tag="div">
+            <button class="shipping-btn" @click="getShippingMethod"> continue to payment method </button>
+          </router-link>
+
+          
+        </div>
       </div>
-
-      <form>
-        <div class="shipping-method">Shipping Method</div>
-        <input type="radio" id="ups-ground" name="shipping" value="ups-ground">
-        <label for="ups-ground">UPS Ground</label><br>
-        <input type="radio" id="ups-3day-select" name="shipping" value="ups-3day-select">
-        <label for="ups-3day-select">UPS 3 Day Select</label><br>
-        <input type="radio" id="ups-2nd-day" name="shipping" value="ups-2nd-day">
-        <label for="ups-2nd-day">UPS 2nd Day Air</label><br>
-        <input type="radio" id="ups-next-day" name="shipping" value="ups-next-day">
-        <label for="ups-next-day">UPS Next Day Air</label><br>
-      </form>
-
-      <hr>
-
-      <div class="shipping-footer">
-        <router-link to="/checkout" tag="div" class="return-cart">
-          &lt; Return to Shipping Information
-        </router-link>
-        <router-link to="/payment" tag="div">
-          <button class="shipping-btn"> continue to payment method </button>
-        </router-link>
-      </div>
-    </div>
+    <!-- </form> -->
+  </div>
+ 
 
     <div class="checkout-summary">
       <h3> Summary </h3>
@@ -102,7 +108,7 @@ export default {
       <form class="checkout-summary-form">
         <div class=" summary-details">
           <p> Subtotal </p>
-          <p> $20.00 </p>
+          <p> $ {{subtotal.toFixed(2)}} </p>
         </div>
         <div class=" summary-details">
           <p> Shipping </p>
@@ -126,7 +132,7 @@ export default {
       <hr>
       <div class="summary-details">
         <p class="total"> Total </p>
-        <p class="total"> $20.00 </p>
+        <p class="total"> $ {{subtotal.toFixed(2)}} </p>
       </div>
       <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>
@@ -199,6 +205,11 @@ hr {
     font-weight: 700;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.shipping-type{
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-line{

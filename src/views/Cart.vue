@@ -38,26 +38,26 @@
       getImage(imagePath) {
             return `http://localhost:8000/storage/${imagePath}`
       },
-      addToOrderDeatil(){
-        const orderDetailData = {
+    //   addToOrderDeatil(){
+    //     const orderDetailData = {
          
-          product_id: this.cartItems.map(item => item.product.id),
-          color_id: this.cartItems.map(item => item.color.id),
-          product_size_id: this.cartItems.map(item => item.productSize.id),
-          quantity: this.cartItems.map(item => item.quantity),
-          total: this.calculateSubtotal.toFixed(2),
-    };
-        axios
-          .post('http://localhost:8000/api/orderdetails', orderDetailData)
-          .then(() => {
-          alert('Product added to order details!');
-          this.$router.push('/checkout');
-          })
-          .catch(error => {
-          console.error('Error saving cart data to the database:', error);
-          // Handle the error or show an error message to the user
-          });
-      },
+    //       product_id: this.cartItems.map(item => item.product.id),
+    //       color_id: this.cartItems.map(item => item.color.id),
+    //       product_size_id: this.cartItems.map(item => item.productSize.id),
+    //       quantity: this.cartItems.map(item => item.quantity),
+    //       total: this.calculateSubtotal.toFixed(2),
+    // };
+    //     axios
+    //       .post('http://localhost:8000/api/orderdetails', orderDetailData)
+    //       .then(() => {
+    //       alert('Product added to order details!');
+    //       this.$router.push('/checkout');
+    //       })
+    //       .catch(error => {
+    //       console.error('Error saving cart data to the database:', error);
+    //       // Handle the error or show an error message to the user
+    //       });
+    //   },
       
       //save subtotal to local storage
        
