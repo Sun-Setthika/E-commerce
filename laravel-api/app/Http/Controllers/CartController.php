@@ -16,8 +16,11 @@ class CartController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return Cart::with('product')->get();
+    {   
+         //cartId returns the array of the carts and products with key cartId
+        $cart= Cart::with('product', 'color')->get();
+        
+        return response()->json(['cartId' => $cart]);
     }
 
     /**
@@ -54,7 +57,7 @@ class CartController extends Controller
         try {
             $latestCart = Cart::with('product')->orderBy('id', 'desc')->first();
             if ($latestCart) {
-                // return Cart::find($latestCart)->first();
+                //lastestCartId returns the array of the carts and products
                  return response()->json(['latestCartId' => $latestCart]);
             } else {
                 return response()->json(['message' => 'No carts found.'], 404);

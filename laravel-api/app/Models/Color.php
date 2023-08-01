@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Cart;
 use App\Models\ProductDetail;
+use App\Models\OrderDetail;
 
 class Color extends Model
 {
@@ -25,4 +26,9 @@ class Color extends Model
     {
         return $this->hasMany(ProductDetail::class);
     }
+
+    public function orderDetail(){
+        return $this->hasMany(OrderDetail::class);
+    }
+    
 }

@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
-            $table->float('total',8,2);
-            $table->string('order_number');
-            $table->unsignedBigInteger('color_id');
+            $table->float('subtotal');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('product_size_id');
             $table->unsignedBigInteger('product_id');
-            
-            $table->foreign('order_number')->references('order_number')->on('orders');
+            $table->unsignedBigInteger('color_id');
+
+            $table->foreign('product_size_id')->references('id')->on('product_sizes');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('color_id')->references('id')->on('colors');
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_details');
+        Schema::dropIfExists('carts');
     }
 };

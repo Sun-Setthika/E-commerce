@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('order_number')->unique();
             $table->float('subtotal',8,2);
             $table->float('total',8,2);
             $table->float('tax',8,2);

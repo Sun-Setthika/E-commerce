@@ -14,7 +14,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_number',
+        'order_id',
         'subtotal',
         'total',
         'tax',
@@ -31,7 +31,8 @@ class Order extends Model
 
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class, 'order_number', 'order_number');
+        return $this->hasMany(OrderDetail::class);
+        // return $this->hasMany(OrderDetail::class, 'order_number', 'order_number');
     } // order_number (1) represent foreign key in the order details
       // order_number (1) represent local key in order 
 

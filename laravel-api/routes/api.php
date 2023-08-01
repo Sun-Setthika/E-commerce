@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\CustomerInfoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +55,8 @@ Route::delete('/products/colors/{id}', [ColorController::class, 'destroy']);
 Route::get('/carts/all',  [CartController::class, 'index']);
 Route::post('/carts', [CartController::class, 'store']);
 Route::get('/carts/latest-cart-id',  [CartController::class, 'getLatestCartId']);
+
+Route::post('/carts/customerInfo', [CustomerInfoController::class, 'store']);
+
+Route::post('/orderdetails', [OrderDetailController::class, 'store']);
+Route::post('/orderdetails/all', [OrderDetailController::class, 'index']);
