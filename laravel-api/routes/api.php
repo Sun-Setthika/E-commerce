@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CustomerInfoController;
+use App\Http\Controllers\ShippingMethodController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,9 @@ Route::post('/carts', [CartController::class, 'store']);
 Route::get('/carts/latest-cart-id',  [CartController::class, 'getLatestCartId']);
 
 Route::post('/carts/customerInfo', [CustomerInfoController::class, 'store']);
+Route::get('/carts/customerInfo/lastest-address-id', [CustomerInfoController::class, 'getLatestAddressId']);
+
+Route::get('/carts/customerInfo/shippingMethods', [ShippingMethodController::class, 'index']);
 
 Route::post('/orderdetails', [OrderDetailController::class, 'store']);
 Route::post('/orderdetails/all', [OrderDetailController::class, 'index']);
