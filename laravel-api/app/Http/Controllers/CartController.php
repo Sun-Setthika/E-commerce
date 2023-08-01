@@ -17,7 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return Cart::all();
+        return Cart::with('product')->get();
     }
 
     /**
@@ -42,13 +42,6 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
                 'status' => $request->status,
             ]);
-                // $cart = new Cart();
-                // $cart->user_id = $request->user_id,
-                // $cart->product_id => $request->product_id,
-                // 'color_id' => $request->color_id,
-                // 'product_size_id' => $request->product_size_id,
-                // 'quantity' => $request->quantity,
-                // 'status' => $request->status,
 
         } catch (\Exception $e) {
             // Log the error or return a specific error response
