@@ -11,11 +11,14 @@
       return{
         cartItems: [],
         cart: [],
+        result: 0,
       };
     },
     created() {
       this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
       this.fetchCart();
+      
+      // this.calculateSubtotal();
      },
     methods: {
       fetchCart(){
@@ -23,6 +26,10 @@
                 .then(response => {
                   this.cart = response.data.cartId;
                     console.log(this.cart);
+
+                    //save calculatesubtotal to local storage
+                    this.result = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                    localStorage.setItem('subtotal', this.result.toFixed(2));
                 })
                 .catch(error => {
                     console.error(error);
@@ -30,10 +37,39 @@
       },
       getImage(imagePath) {
             return `http://localhost:8000/storage/${imagePath}`
-        }
-    }
-    
-
+      },
+      addToOrderDeatil(){
+        const orderDetailData = {
+         
+          product_id: this.cartItems.map(item => item.product.id),
+          color_id: this.cartItems.map(item => item.color.id),
+          product_size_id: this.cartItems.map(item => item.productSize.id),
+          quantity: this.cartItems.map(item => item.quantity),
+          total: this.calculateSubtotal.toFixed(2),
+    };
+        axios
+          .post('http://localhost:8000/api/orderdetails', orderDetailData)
+          .then(() => {
+          alert('Product added to order details!');
+          this.$router.push('/checkout');
+          })
+          .catch(error => {
+          console.error('Error saving cart data to the database:', error);
+          // Handle the error or show an error message to the user
+          });
+      },
+      
+      //save subtotal to local storage
+       
+      
+      
+    },
+    computed: {
+      calculateSubtotal() {
+        //reduce is a function to a single value, 0 initliaise the starting value at 0
+        return this.result 
+      }
+},
 };
 
 </script>
@@ -43,6 +79,7 @@
       <HeaderView/>
 
     <!-- content -->
+    <form  @submit.prevent="addToOrderDeatil">
     <div class="content">
         <div class="cart">
             <h3> Your Cart </h3>
@@ -58,12 +95,12 @@
                 <img :src="getImage(item.product.image)" class="cart-product">
                 <div class="product-desc">
                     <div class="cart-text"> {{ item.product.name }}</div>
-                    <div class="cart-text"> Color:  {{ item.color.name }} </div>
+                    <div class="cart-text"> Color: {{ item.color.name }} </div>
                 </div>
                 
                 </div>
-                <div class="price"> $20.00</div>
-                <div class="quantity"> 1 </div>
+                <div class="price"> $ {{item.price}} . 00</div>
+                <div class="quantity">{{ item.quantity }} </div>
             </div>
 
 
@@ -78,7 +115,7 @@
             <hr>
             <div class=subtotal>
                 <div class="cart-text"> Subtotal:  </div>
-                <div class="cart-text"> $20.00 </div>
+                <div class="cart-text">  ${{ calculateSubtotal.toFixed(2) }} </div>
             </div>
             <hr>
         </div>
@@ -87,7 +124,7 @@
             <hr>
             <div class=" summary-details">
               <p> Subtotal </p>
-              <p> $20.00 </p>
+              <p>${{ calculateSubtotal.toFixed(2) }} </p>
             </div>
             <div  class=" summary-details">
               <p> Shipping </p>
@@ -100,16 +137,18 @@
             <hr>
             <div class="summary-details">
               <p> Total </p>
-              <p> $20.00 </p>
+              <p class="total"> ${{ calculateSubtotal.toFixed(2) }} </p>
             </div>
             <router-link to="/checkout">
               <button class="btn"> Checkout </button>
           </router-link>
         </div>
+        
 
 
 
     </div>
+  </form>
     <hr>
     <!-- footer  -->
     <div class="footer">
@@ -257,6 +296,11 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: -5px;
+  }
+
+  .summary-details .total{
+     font-weight: bold;
+    font-size: 20px;
   }
 
   .btn{

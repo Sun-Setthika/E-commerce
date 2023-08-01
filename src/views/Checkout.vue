@@ -5,19 +5,41 @@ export default {
   name: 'Cart',
   data() {
     return {
-      jsonData: null,
+      email: '',
+      firstname: '',
+      lastname: '',
+      phone_number: '',
+      company: '',
+      address: '',
+      country: '',
+      state: '',
+      zip: ''
     };
   },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  methods: {
+    addToCustomerInfo(){
+      const customerInfo = {
+        address: this.address,
+        phone_number: this.phone_number,
+        country: this.country,
+        state: this.state,
+        zip: thiz.zip,
+      };
+      axios
+        .post('http://localhost:8000/api/carts/customerInfos', customerInfo)
+        .then(() => {
+        alert('Information added to customerInfo!');
+        this.$router.push('/paymentmethod');
+        })
+        .catch(error => {
+        console.error('Error saving cart data to the database:', error);
+        // Handle the error or show an error message to the user
+        });
+   
+      
+    }
   },
+ 
 };
 
 </script>
@@ -70,18 +92,21 @@ export default {
             
 
             <form>
-              <input type="email" name="email" class="input-line" placeholder="Email">
+              <input type="email" name="email" class="input-line" placeholder="Email"  v-model="email">
               <hr>
               <h3> Shipping Information </h3>
               <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Firstname">
-                <input type="name" name="email" class="input-line" placeholder="Lastname">
+                <input type="name" name="email" class="input-line" placeholder="Firstname"  v-model="firstname">
+                <input type="name" name="email" class="input-line" placeholder="Lastname"  v-model="lastname">
               </div>
               <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Company(Optional)">
+                <input type="name" name="phone_number" class="input-line" placeholder="Phone number"  v-model="phone_number">
               </div>
               <div class="customer-name">
-                <input type="name" name="email" class="input-line" placeholder="Address">
+                <input type="name" name="email" class="input-line" placeholder="Company(Optional)"  v-model="company">
+              </div>
+              <div class="customer-name">
+                <input type="name" name="email" class="input-line" placeholder="Address"  v-model="address">
                 <input type="name" name="email" class="input-line" placeholder="Apt.Optional">
               </div>
               <!-- <div class="customer-name">
@@ -91,21 +116,21 @@ export default {
               </div> -->
 
               <div class="customer-name">
-                <select class="input-line" name="country" placeholder="Country">
+                <select class="input-line" name="country" placeholder="Country"  v-model="country">
                   <option value="" disabled selected>Select Country</option>
                   <option value="Cambodia"> Cambodia </option>
                   <option value="France"> France </option>
                   <option value="United Kingdom"> United Kingdom</option>
                   <!-- Add more options for countries -->
                 </select>
-                <select class="input-line" name="state" placeholder="State">
+                <select class="input-line" name="state" placeholder="State"  v-model="state">
                   <option value="" disabled selected>Select State</option>
                   <option value="Phnom Penh"> Phnom Penh </option>
                   <option value="Paris"> Paris </option>
                   <option value="London"> London </option>
                   <!-- Add more options for states -->
                 </select>
-                <input type="name" name="zip" class="input-line" placeholder="Zip">
+                <input type="name" name="zip" class="input-line" placeholder="Zip"  v-model="zip">
               </div>
 
               <hr>
