@@ -9,12 +9,30 @@
     },
     data(){
       return{
-        cartItems: []
+        cartItems: [],
+        cart: [],
       };
     },
     created() {
       this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      this.fetchCart();
+     },
+    methods: {
+      fetchCart(){
+        axios.get(`http://localhost:8000/api/carts/all`) 
+                .then(response => {
+                  this.cart = response.data.cartId;
+                    console.log(this.cart);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+      getImage(imagePath) {
+            return `http://localhost:8000/storage/${imagePath}`
+        }
     }
+    
 
 };
 
@@ -34,13 +52,13 @@
                 <p> Price </p>
                 <p> Quantity </p>
             </div>
-            <div class="cart-items" v-for="item in cartItems" :key="item.id">
-              <div class="cart-details">
+            <div class="cart-items" v-if="cart && cart.length ">
+              <div class="cart-details"  v-for="item in cart" :key="item.id">
                 <div class="product-img">
-                <img src="../assets/css/images/framboise.jpg" class="cart-product">
+                <img :src="getImage(item.product.image)" class="cart-product">
                 <div class="product-desc">
-                    <div class="cart-text">La mousse de rouge Framboise</div>
-                    <div class="cart-text"> Color: Framboise </div>
+                    <div class="cart-text"> {{ item.product.name }}</div>
+                    <div class="cart-text"> Color:  {{ item.color.name }} </div>
                 </div>
                 
                 </div>
@@ -51,6 +69,10 @@
 
             
             </div>
+            <div v-else>
+                <!-- Display a message when the latestCart object is null -->
+                <p>No items in the cart.</p>
+          </div>
             
 
             <hr>
