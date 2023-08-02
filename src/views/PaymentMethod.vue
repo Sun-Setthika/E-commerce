@@ -53,48 +53,25 @@ export default {
       if (discount) {
         const total = (this.subtotal + this.shippingmethod.price) * ( discount.discount_percentage );
         this.total = total.toFixed(2);
-      } else {
-        this.total = (this.subtotal + this.shippingmethod.price).toFixed(2);
+      } 
+
+      else{ this.total = (this.subtotal + this.shippingmethod.price).toFixed(2);
       }
+      localStorage.setItem('total', this.total);
+      
   },
     calculateTotalwithDiscount() {
-          const subtotal = this.subtotal;
-          const price = this.shippingmethod.price;
-          const selectedDiscount = this.selectedDiscount;
+        localStorage.setItem('total', this.total);
+        return this.total  = (this.subtotal + this.shippingmethod.price).toFixed(2);
+        
 
-          const discount = this.discountCode.find(code => code.code == selectedDiscount);
-
-          if (discount) {
-            const total = (subtotal + price) * discount.discount_percentage;
-            console.log(total);
-            return total.toFixed(2);
-          } else {
-              const total = (subtotal + price).toFixed(2);
-              return total; 
-          }
-}
+  }
+    // saveTotal(){
+    //   localStorage.setItem('total', JSON.stringify(total));
+    // }
 
     
   },
- 
-  // computed: {
-  //   calculateTotalwithDiscount(){
-  //       const subtotal = this.subtotal;
-  //       const price = this.shippingmethod.price;
-  //       const selectedDiscount = this.selectedDiscount;
-
-  //       if (this.discountCode && this.discountCode.code === selectedDiscount) {
-  //           const total = (subtotal + price) * this.discountCode.discount_percentage;
-  //           console.log(total);
-  //           return total.toFixed(2);
-  //       } else {
-  //           const total =  (subtotal + price).toFixed(2);
-  //           return total;
-  //       };
-  // }
-  //   },
-   
-  // },
 };
 
 </script>
@@ -163,8 +140,16 @@ export default {
             </div>
             <hr>
             <div class="customer-footer">
-               <a href="/cart" class="path"> &lt; Return to Cart</a>
-               <button class="shipping-btn"> continue to shipping method </button>
+              <router-link to="/shippingview" >
+                <p class="path">&lt; Return to Shipping Info </p>
+              </router-link>
+              
+               <!-- <a href="/cart" class="path"> &lt; Return to Shipping Info </a> -->
+              <router-link to="/confirmview">
+                <button class="shipping-btn" @click="saveTotal"> continue to shipping method </button>
+              </router-link>
+                
+              
               </div> 
 
         </div>
@@ -192,14 +177,17 @@ export default {
                 </div>
                 <div class="discount">
                   <input type="text" name="discount-code" class="discount-input" v-model="selectedDiscount"> 
-                  <button class="btn" @click="applyDiscount"> Apply </button>
+                  <button class="btn" @click.prevent="applyDiscount"> Apply </button>
                 </div>
               </div>
           </form>
             <hr>
             <div class="summary-details">
               <p class="total"> Total </p>
-              <p class="total" > $ {{ calculateTotalwithDiscount() }} </p>
+              <div v-if="selectedDiscount" >
+                <p class="total" > $ {{ total }} </p>
+              </div>
+              <p class="total" v-else> $ {{ calculateTotalwithDiscount() }} </p>
             </div>
             <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>
