@@ -131,7 +131,7 @@ export default {
           <p> - </p>
         </div>
         <hr>
-        <div class="discount-details">
+        <!-- <div class="discount-details">
           <div>
             <p> Gift card or discount code </p>
           </div>
@@ -139,9 +139,9 @@ export default {
             <input type="text" name="discount-code" class="input-line">
             <button class="code-apply-btn"> Apply </button>
           </div>
-        </div>
+        </div> -->
       </form>
-      <hr>
+      <!-- <hr> -->
       <div class="summary-details">
         <p class="total"> Total </p>
         <p class="total"> $ {{subtotal.toFixed(2)}} </p>

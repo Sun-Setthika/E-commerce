@@ -9,6 +9,7 @@ export default {
   },
   data() {
     return {
+      cartItems: [],
       latestAddress: [],
       selectedDiscount: '',
       result: 0,
@@ -18,11 +19,17 @@ export default {
     };
   },
   created(){
+   
     this.fetchLatestAddressId(),
     this.fetchDiscountCode(),
     // this.calculateTotalwithDiscount();
-    this.shippingmethod = JSON.parse(localStorage.getItem('shippingmethod')) || []
-    this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || []
+    
+     //retrieve everything from local storage
+     this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+     this.shippingmethod = JSON.parse(localStorage.getItem('shippingmethod')) || [];
+     this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || [];
+     this.total = JSON.parse(localStorage.getItem('total')) || [];
+     //
   },
   methods:{
     fetchLatestAddressId(){
@@ -65,13 +72,83 @@ export default {
         return this.total  = (this.subtotal + this.shippingmethod.price).toFixed(2);
         
 
-  }
-    // saveTotal(){
-    //   localStorage.setItem('total', JSON.stringify(total));
-    // }
-
-    
   },
+    //retreiving everything including cartItems, shipping method, subtotal, total to db then clear local storage
+    addToOrder(){
+        const Order = {
+          subtotal: this.subtotal,
+          total: this.total,
+          tax: '',
+          created_at: '',
+          updated_at: '',
+          user_id: '1',
+          customer_id: this.latestAddress.id,
+          shipping_method_id: '1',
+          discount_id: '1',
+        };
+
+          axios
+            .post(`http://localhost:8000/api/orders`, Order)
+            	.then(() => {
+              alert('Order Sucess!');
+          this.$router.push('/confirmview');
+          })
+            .catch(error => {
+            console.error('Error saving cart data to the database:', error);
+          // Handle the error or show an error message to the user
+          });
+     
+
+        },
+    addToOrderDetail(){
+      const orderDetailData = 
+          this.cartItems.map(item => ({
+            product_id: item.product?.id,
+            color_id: item.color?.id,
+            product_size_id: item.productSize?.id,
+            quantity: item.quantity,
+            total: (item.quantity * item.product?.price), // You may need to adjust this calculation based on your specific logic
+  }));
+
+        axios
+          .post('http://localhost:8000/api/orderdetails', orderDetailData)
+          .then(() => {
+          // alert('Product added to order details!');
+          // this.$router.push('/checkout');
+          })
+          .catch(error => {
+          console.error('Error saving cart data to the database:', error);
+          // Handle the error or show an error message to the user
+          });
+      },
+
+    continueToShippingMethod() {
+      console.log('continueToShippingMethod() called');
+        this.addToOrderDetail();
+        this.addToOrder();
+        // this.clearLocalStorage();
+        // this.deleteCartItems(); 
+  },
+  deleteCartItems() {
+      axios
+        .delete('http://localhost:8000/api/carts/delete')
+        .then(() => {
+          console.log('Cart items deleted successfully!');
+        })
+        .catch((error) => {
+          console.error('Error deleting cart items:', error);
+        });
+    },
+  clearLocalStorage() {
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('shippingmethod');
+    localStorage.removeItem('subtotal');
+    localStorage.removeItem('total');
+  },
+
+  },
+    
+  
 };
 
 </script>
@@ -146,7 +223,7 @@ export default {
               
                <!-- <a href="/cart" class="path"> &lt; Return to Shipping Info </a> -->
               <router-link to="/confirmview">
-                <button class="shipping-btn" @click="saveTotal"> continue to shipping method </button>
+                <button class="shipping-btn" @click="continueToShippingMethod"> continue to shipping method </button>
               </router-link>
                 
               
