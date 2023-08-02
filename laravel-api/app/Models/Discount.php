@@ -10,6 +10,14 @@ class Discount extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'code',
+        'discount_percentage',
+        // Add other attributes as needed
+    ];
+
     public function order()
     {
         return $this->hasMany(order::class);

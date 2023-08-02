@@ -9,6 +9,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CustomerInfoController;
 use App\Http\Controllers\ShippingMethodController;
+use App\Http\Controllers\DiscountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,8 @@ Route::post('/carts/customerInfo', [CustomerInfoController::class, 'store']);
 Route::get('/carts/customerInfo/lastest-address-id', [CustomerInfoController::class, 'getLatestAddressId']);
 
 Route::get('/carts/customerInfo/shippingMethods', [ShippingMethodController::class, 'index']);
+
+Route::get('/carts/customerInfo/shippingMethods/discount-code', [DiscountController::class, 'index']);
 
 Route::post('/orderdetails', [OrderDetailController::class, 'store']);
 Route::post('/orderdetails/all', [OrderDetailController::class, 'index']);
