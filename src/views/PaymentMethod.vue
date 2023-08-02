@@ -1,65 +1,66 @@
 <script>
   import axios from 'axios';
+  import HeaderView from './HeaderView.vue';
 
 export default {
-  name: 'Cart',
+  name: 'PaymentMethod',
+  components:{
+    HeaderView,
+  },
   data() {
     return {
-      jsonData: null,
+      latestAddress: [],
+      selectedDiscount: '',
+      result: 0,
+      discountCode: [],
+      
     };
   },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  created(){
+    this.fetchLatestAddressId(),
+    this.fetchDiscountCode(),
+    this.shippingmethod = JSON.parse(localStorage.getItem('shippingmethod')) || []
+    this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || []
+  },
+  methods:{
+    fetchLatestAddressId(){
+       axios.get(`http://localhost:8000/api/carts/customerInfo/lastest-address-id`) // Replace this with your actual backend API endpoint to fetch category details
+          .then(response => {
+              this.latestAddress = response.data.latestAddressId;
+                    console.log(this.latestAddress);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+    fetchDiscountCode(){
+      axios.get(`http://localhost:8000/api/carts/customerInfo/shippingMethods/discount-code`)
+        .then(response => {
+                this.discountCode = response.data;
+                      console.log(this.discountCode);
+                  })
+                  .catch(error => {
+                      console.error(error);
+                  });
+    }
+  },
+  computed: {
+    calculateTotal(){
+      const subtotal = this.subtotal;
+      const price = this.shippingmethod.price;
+      return (subtotal + price);
+    },
+    calculateTotalwithDiscount(){
+      
+    }
   },
 };
 
 </script>
 
 <template>
-    <div>
-      <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-              <a href="/">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a>Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-    </div>
+  <div>
+   <HeaderView/>
 
     <!-- content -->
     <div class="content">
@@ -68,12 +69,12 @@ export default {
             <hr>
 
             <div class="shipping-address">
-                <p> <span class="customer-info"> Shipping address </span> 12 Waldo Point Road, Mishauken NY 1200 </p>
+                <p> <span class="customer-info"> Shipping address </span>{{ latestAddress.address }} </p>
                 <p> Edit </p>
             </div>
             <hr>
             <div class="shipping-address"> 
-                <p> <span class="customer-info"> Shipping Method </span> UPS Ground, $2.20 </p>
+              <p> <span class="customer-info"> Shipping Method </span> {{shippingmethod.type }},  ${{ shippingmethod.price }} </p>
                 <p> Edit </p>
             </div>
             <hr>
@@ -133,15 +134,15 @@ export default {
             <form>
               <div class=" summary-details">
                 <p> Subtotal </p>
-                <p> $20.00 </p>
+                <p> ${{subtotal}} </p>
               </div>
               <div  class=" summary-details">
                 <p> Shipping </p>
-                <p> $2.20 </p>
+                <p> ${{shippingmethod.price}}0 </p>
               </div>
               <div  class=" summary-details">
                 <p>Taxes </p>
-                <p> @1.40 </p>
+                <p> - </p>
               </div>
               <hr>
               <div class="discount-details">
@@ -149,7 +150,7 @@ export default {
                   <p> Gift card or discount code </p>
                 </div>
                 <div class="discount">
-                  <input type="text" name="discount-code" class="discount-input"> 
+                  <input type="text" name="discount-code" class="discount-input" v-model="selectedDiscount"> 
                   <button class="btn"> Apply </button>
                 </div>
               </div>
@@ -157,7 +158,7 @@ export default {
             <hr>
             <div class="summary-details">
               <p class="total"> Total </p>
-              <p class="total"> $20.00 </p>
+              <p class="total"> $ {{ calculateTotal.toFixed(2) }} </p>
             </div>
             <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>

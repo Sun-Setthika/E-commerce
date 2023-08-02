@@ -14,6 +14,7 @@ export default {
       ShippingMethod: [],
       selectedShippingMethod: '',
       loading: true,
+      price: 0,
     };
   },
   created(){
@@ -44,13 +45,24 @@ export default {
       },
       getShippingMethod(){
         if(this.selectedShippingMethod){
-          console.log('Selected Shipping Method:', this.selectedShippingMethod);
-          localStorage.setItem('shippingmethod', this.selectedShippingMethod);
-          this.loading = false;
+          // this.getPrice();
+
+          const shippingInfo = {
+            type: this.selectedShippingMethod,
+            price: this.price,
+          };
+          console.log('Selected Shipping Method:', shippingInfo);
+          localStorage.setItem('shippingmethod', JSON.stringify(shippingInfo));
+          // this.loading = false;
 
         }
         
       },
+
+      getPrice(price){
+        this.price = price;
+        console.log(this.price);
+      }
   },
     
 };
@@ -75,7 +87,7 @@ export default {
           <div class="shipping-method">Shipping Method</div>
           <div  v-for="method in ShippingMethod" :key="method.id" class="shipping-type">
             <div>
-              <input type="radio" :id="method.id" :name="'shippingMethod'" :value="method.type" v-model="selectedShippingMethod">
+              <input type="radio" :id="method.id" :name="'shippingMethod'" :value="method.type" v-model="selectedShippingMethod" @click="getPrice(method.price)">
               <label :for="method.id">{{ method.type }}</label><br>
             </div>
           
