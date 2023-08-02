@@ -13,12 +13,14 @@ export default {
       selectedDiscount: '',
       result: 0,
       discountCode: [],
+      total: 0,
       
     };
   },
   created(){
     this.fetchLatestAddressId(),
     this.fetchDiscountCode(),
+    // this.calculateTotalwithDiscount();
     this.shippingmethod = JSON.parse(localStorage.getItem('shippingmethod')) || []
     this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || []
   },
@@ -37,23 +39,62 @@ export default {
       axios.get(`http://localhost:8000/api/carts/customerInfo/shippingMethods/discount-code`)
         .then(response => {
                 this.discountCode = response.data;
+                      console.log(response);
                       console.log(this.discountCode);
                   })
                   .catch(error => {
                       console.error(error);
                   });
-    }
+            },
+    applyDiscount() {
+      const selectedDiscount = this.selectedDiscount;
+      const discount = this.discountCode.find(code => code.code == selectedDiscount);
+
+      if (discount) {
+        const total = (this.subtotal + this.shippingmethod.price) * ( discount.discount_percentage );
+        this.total = total.toFixed(2);
+      } else {
+        this.total = (this.subtotal + this.shippingmethod.price).toFixed(2);
+      }
   },
-  computed: {
-    calculateTotal(){
-      const subtotal = this.subtotal;
-      const price = this.shippingmethod.price;
-      return (subtotal + price);
-    },
-    calculateTotalwithDiscount(){
-      
-    }
+    calculateTotalwithDiscount() {
+          const subtotal = this.subtotal;
+          const price = this.shippingmethod.price;
+          const selectedDiscount = this.selectedDiscount;
+
+          const discount = this.discountCode.find(code => code.code == selectedDiscount);
+
+          if (discount) {
+            const total = (subtotal + price) * discount.discount_percentage;
+            console.log(total);
+            return total.toFixed(2);
+          } else {
+              const total = (subtotal + price).toFixed(2);
+              return total; 
+          }
+}
+
+    
   },
+ 
+  // computed: {
+  //   calculateTotalwithDiscount(){
+  //       const subtotal = this.subtotal;
+  //       const price = this.shippingmethod.price;
+  //       const selectedDiscount = this.selectedDiscount;
+
+  //       if (this.discountCode && this.discountCode.code === selectedDiscount) {
+  //           const total = (subtotal + price) * this.discountCode.discount_percentage;
+  //           console.log(total);
+  //           return total.toFixed(2);
+  //       } else {
+  //           const total =  (subtotal + price).toFixed(2);
+  //           return total;
+  //       };
+  // }
+  //   },
+   
+  // },
 };
 
 </script>
@@ -69,7 +110,7 @@ export default {
             <hr>
 
             <div class="shipping-address">
-                <p> <span class="customer-info"> Shipping address </span>{{ latestAddress.address }} </p>
+                <p> <span class="customer-info"> Shipping address </span> {{ latestAddress.address }} </p>
                 <p> Edit </p>
             </div>
             <hr>
@@ -151,14 +192,14 @@ export default {
                 </div>
                 <div class="discount">
                   <input type="text" name="discount-code" class="discount-input" v-model="selectedDiscount"> 
-                  <button class="btn"> Apply </button>
+                  <button class="btn" @click="applyDiscount"> Apply </button>
                 </div>
               </div>
           </form>
             <hr>
             <div class="summary-details">
               <p class="total"> Total </p>
-              <p class="total"> $ {{ calculateTotal.toFixed(2) }} </p>
+              <p class="total" > $ {{ calculateTotalwithDiscount() }} </p>
             </div>
             <!-- <router-link to="/checkout">
               <button class="btn"> Checkout </button>
