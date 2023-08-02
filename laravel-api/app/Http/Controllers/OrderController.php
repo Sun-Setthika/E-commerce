@@ -54,7 +54,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+            return Order::create([
+                'subtotal' => $request->subtotal,
+                'total' => $request->total,
+                'tax' => $request->tax,
+                'user_id' => $request->user_id,
+                'customer_info_id' => $request->customer_info_id,
+                'shipping_id' => $request->shipping_id,
+                'discount_id'=> $request->discount_id,
+            ]);
+        
     }
 
     /**

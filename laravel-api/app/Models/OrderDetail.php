@@ -20,6 +20,7 @@ class OrderDetail extends Model
         'product_size_id',
         'color_id',
         'subtotal',
+        
         // Add other attributes as needed
     ];
 
