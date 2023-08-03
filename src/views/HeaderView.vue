@@ -7,7 +7,7 @@
         </div>
 
         <!-- <a href="/"> -->
-          <h1>Paris Cosmetic</h1>
+          <h1 style="font-size: 40px;">Paris Cosmetic</h1>
         <!-- </a> -->
         
         <div class="header-icons">
@@ -27,20 +27,20 @@
         </div>
       </div>
       <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dots">&#183;</p> 
+        <!-- <a href="/welcome">Welcome</a>
+         <p class="dots">&#183;</p>  -->
         
-        <a href="/">Home</a>
+        <a href="/" style="font-size: 20px">Home</a>
         
          <li class="nav-list" v-for="product_cat in product_cats" :key="product_cat.id">
           
-          <a class="bold" @click="navigateToCategory(product_cat)">
+          <a class="bold" @click="navigateToCategory(product_cat)" style="font-size: 20px;">
             {{ product_cat.name }}
           </a>
         </li>
         
         <p class="dots">&#183;</p>
-        <a>About Us</a>
+        <a href="/about" style="font-size: 20px">About Us</a>
         
       </div>
     </div>
@@ -48,7 +48,7 @@
 
   <style>
       .dots {
-        font-size: 30px;
+        font-size: 35px;
         font-weight: 800;
         margin: 0;
         padding: 0;

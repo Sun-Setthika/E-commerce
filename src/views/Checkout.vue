@@ -1,8 +1,11 @@
 <script>
   import axios from 'axios';
-
+  import HeaderView from './HeaderView.vue';
   export default {
     name: 'Cart',
+    components : {
+      HeaderView
+    },
     data() {
       return {
         email: '',
@@ -51,42 +54,7 @@
 
 <template>
     <div>
-      <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-              <a href="/">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a>Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-    </div>
+      <HeaderView/>
 
     <!-- content -->
     <div class="content">

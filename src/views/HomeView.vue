@@ -147,7 +147,11 @@
       </div>
       
 
-          <div class="about-us"><button class="btn-about-us">About us</button></div>
+          <div class="about-us">
+            <router-link to="/about" >
+              <button class="btn-about-us">About us</button>
+            </router-link>
+          </div>
           <p> Get <span class="discount">10% off </span> your first purchase </p>
         </div>
         <!-- <p> Get <span>10% off </span> your first purchase </p> -->

@@ -1,50 +1,17 @@
 <script>
 
+import HeaderView from './HeaderView.vue';
+
 export default {
     name: 'ConfirmView',
-    components: {
-      
-    },
+    components:{
+        HeaderView,
+  },
 };
 </script>
 
 <template>
-   <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-              <a href="/">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a>Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-    </div>
+   <HeaderView/>
 
     <!-- content -->
     <div class="content">
@@ -59,32 +26,50 @@ export default {
             </h3>
             <div class="order-desc">
                 <p> Hi kenny, we're getting your order ready to be shipping. We will nofity you when it has been sent</p>
-                <router-link to="/cart">
+                <!-- <router-link to="/cart">
                     <button class="btn"> View your order </button>
-                </router-link>
+                </router-link> -->
             </div>
         </div>
         <hr>
         
-        <div class="order-details">
-            <div class="review">
-                <div>
-                    <div>
-                        <img>
-                    </div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div class="address">
-                    <div></div>
-                    <div></div>
-                </div>
+        <div class="summary">
+            <h3> Summary </h3>
+            <hr>
+            <div class=" summary-details">
+              <p> Subtotal </p>
+              <p> - </p>
             </div>
-            <div class="summary">
-
+            <div  class=" summary-details">
+              <p> Shipping </p>
+              <p> - </p>
             </div>
+            <div  class=" summary-details">
+              <p>Taxes </p>
+              <p> - </p>
+            </div>
+            <hr>
+            <div class="summary-details">
+              <p> Total </p>
+              <p class="total"> </p>
+            </div>
+           
         </div>
 
+        <div class="address">
+            <div>
+                <h3> Shipping Address </h3>
+                <div>
+
+                </div>
+            </div>
+            <div>
+                <h3> Billing Address </h3>
+                <div>
+
+                </div>
+            </div>
+        </div>
         
 
 
@@ -157,6 +142,34 @@ export default {
         justify-content: space-between;
     }
 
+    .summary{
+        background-color: #EFE7DA;
+        padding: 20px 50px;
+    }
+
+    .summary-details{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -15px;
+  }
+
+    .summary-details:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+    .summary-details p{
+        font-size: 18px;
+        font-weight: 600px;
+    }
+
+    .summary-details .total{
+    font-weight: bold;
+  }
+    .address{
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+    }
     
 
 </style>

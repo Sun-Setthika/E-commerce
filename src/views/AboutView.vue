@@ -1,83 +1,49 @@
 <script>
   import axios from 'axios';
+  import HeaderView from './HeaderView.vue';
 
 export default {
   name: 'about',
-  data() {
-    return {
-      jsonData: null,
-    };
-  },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+  components: {
+    HeaderView,
+  }
+ 
 };
 
 </script>
 
-<!-- <script>
-import Header from './HeaderView.vue'
-import Footer from './FooterView.vue'
-
-export default {
-    name: 'ShampooView',
-    components: {
-        Header,
-        Footer
-    }
-}
-</script> -->
-
 <template>
-    <div class="body">
-    <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> </a>
-            </div>
-          <div class="icons">
-              <a href="/cart">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-        <p class="dot">&#183;</p>
-        <a href="/">Home</a>
-        <p class="dot">&#183;</p>
-        <a href="/lips">Lips</a>
-        <p class="dot">&#183;</p>
-        <a>Sets</a>
-        <p class="dot">&#183;</p>
-        <a>About Us</a>
-      </div>
-    </div>
+    <div>
+    <HeaderView/>
 
     <div class="content">
     <div class="about-hero-im">
       <img class="about-us-img" src="../assets/css/images/hero-im-3.jpg">
     </div>
+    <div>
+        <h1> ABOUT </h1>
+        <h1> PARIS COSMETIC </h1>
+        <div class="desc">
+          <p>
+            Paris Cosmetic is the number one global cosmetics brand and is available in over 129 countries worldwide. Offering more than 200 products, 
+            Paris Cosmetic combines technologically advanced formulas with on-trend expertise to create accessible cosmetics with a cool,
+            urban edge and a spirited style. Maybelline New York is the official sponsor of New York Mercedes-Benz Fashion Week.
+            In 1913, young Chicago chemist Thomas Williams had a dilemma. His older sister, Maybel, was in love with a man who was in love with someone else. Maybel Williams did her best with what was available—she used petroleum jelly on her 
+            lashes and brows to enhance them. Her brother decided to help her increase her allure by adding carbon dust to the petroleum jelly, which darkened her lashes and brows more dramatically. The product worked. In 1915, Maybel got her man and Thomas founded what would become the global industry giant, 
+            Paris Cosmetice, named after the bride and her favourite beauty aid.
+          </p>
+          <p>
+            Two years later, Williams introduced Maybelline Cake Mascara, the first modern eye cosmetic made for everyday use. Initially available only through mail order, 
+            it was so popular that women began to ask for it in drugstores. The signature red Eyebrow Pencil followed, along with coloured eyeshadows and complementary eyeliners, leading the youthful, flapper fashion trend of dramatic makeup. Maybelline became the first cosmetic company to advertise on radio and sales boomed. In 1932, responding to incessant demand,
+             Maybelline introduced a special 10-cent package of Cake Mascara for retail sale. And the rest, as they say, is history!
+          </p>
+        </div>
+        <h1> MAKE IT HAPPEN </h1>
+    </div>
 
-    <!-- <div>
-      <img src="../assets/css/images/aboutUs.jpg">
-    </div> -->
-        
-    
+
+
+  </div>  
 
     <div class="footer">
      
@@ -94,7 +60,7 @@ export default {
       </div>
     
     </div>
-  </div>  
+
 
   </div>
     <!-- <Header></Header> -->
@@ -105,20 +71,34 @@ export default {
     <!-- <Footer></Footer> -->
 </template>
 <style scoped>
-        .content{
-          margin-top: 25px;
-        }
 
-        .about-hero-im{
-          width: 100%;
-          height:520px
+  h1{
+    text-align: center;
+    font-size: 60px;
+  }
+  .content{
+    height: 1500px;
+    overflow: hidden;
+  }
+
+  .about-hero-im{
+    width: 100%;
+    height:520px
           
-        }
+ }
 
-        .about-us-img{
-          width: 100%;
-          height: 520px;
-        }
+  .about-us-img{
+    width: 100%;
+    height: 520px;
+ }
+
+ .desc{
+  text-align: center;
+  padding: 0 10%;
+  font-size: 18px;
+ }
+
+  
 
        
 </style>

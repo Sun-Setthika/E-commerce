@@ -5,19 +5,44 @@ export default {
   name: 'Signup',
   data() {
     return {
-      jsonData: null,
+      email: '',
+      password: '',
+      users: [],
     };
   },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  created(){
+    this.fetchUser();
   },
+  methods:{
+    fetchUser(){
+      console.log(this.email,'chem:',this.password);
+      
+        axios.get(`http://localhost:8000/api/users`) 
+                .then(response => {
+                  this.users = response.data;
+                    console.log(this.users);
+
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+      handleLoginSuccess() {
+      // Save the login status to Local Storage
+      localStorage.setItem('isLoggedIn', 'true');
+
+      // Redirect the user to the home page or any other page after successful login
+      this.$router.push('/');
+    }
+  },
+  computed: {
+      isTrue(){
+        return this.users.some(
+          (user) => user.password == this.password && user.email == this.email
+        );
+      }
+    }
+  
 };
 
 </script>
@@ -59,18 +84,29 @@ export default {
         <div class="login">
           <div class="input-wrapper">
           <label class="email">Email: </label>
-          <input type="email" name="email"  class="input-line"> 
+          <input type="text" name="email"  class="input-line" v-model="email"> 
         </div>
         <div class="input-wrapper">
           <div class="password"> 
             <label> Password: </label>
             <a> forgot ?</a>
           </div>
-          <input type="password" name="password" class="input-line"> 
+          <input type="text" name="password" class="input-line" v-model="password"> 
         </div>
         </div>
-        <button type="submit" class="btn"> LOGIN </button>
-        <a href="/signup" class="acc"> Create an account </a>
+
+        <div v-if="isTrue">
+            <router-link to="/">
+                <button type="submit" class="btn"  @click="handleLoginSuccess">LOGIN</button>
+                <a href="/signup" class="acc"> Create an account </a>
+            </router-link>
+          </div>
+
+        <div v-else disabled>
+              <button type="submit" class="btn">LOGIN</button>
+        </div>
+        <!-- <button type="submit" class="btn"> LOGIN </button>
+        <a href="/signup" class="acc"> Create an account </a> -->
       </form>
     </div>
    

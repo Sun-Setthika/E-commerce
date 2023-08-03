@@ -9,7 +9,7 @@ export default {
   },
   data() {
     return {
-      cartItems: [],
+      cartItemsTest: [],
       latestAddress: [],
       selectedDiscount: '',
       result: 0,
@@ -25,7 +25,7 @@ export default {
     // this.calculateTotalwithDiscount();
     
      //retrieve everything from local storage
-     this.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+     this.cartItemsTest = JSON.parse(localStorage.getItem('cartItems')) || [];
      this.shippingmethod = JSON.parse(localStorage.getItem('shippingmethod')) || [];
      this.subtotal = JSON.parse(localStorage.getItem('subtotal')) || [];
      this.total = JSON.parse(localStorage.getItem('total')) || [];
@@ -101,18 +101,21 @@ export default {
 
         },
     addToOrderDetail(){
+      console.log('before insertig in db',this.cartItemsTest)
       const orderDetailData = 
-          this.cartItems.map(item => ({
-            product_id: item.product?.id,
-            color_id: item.color?.id,
-            product_size_id: item.productSize?.id,
+          this.cartItemsTest.map(item => ({
+            product_id: item.product_id,
+            color_id: item.color_id,
+            product_size_id: item.product_size_id,
             quantity: item.quantity,
-            total: (item.quantity * item.product?.price), // You may need to adjust this calculation based on your specific logic
+            subtotal: this.subtotal, // You may need to adjust this calculation based on your specific logic
   }));
+  console.log('After storing in new var:', orderDetailData);
 
         axios
           .post('http://localhost:8000/api/orderdetails', orderDetailData)
-          .then(() => {
+          .then((res) => {
+            console.log('successfullu added',res);
           // alert('Product added to order details!');
           // this.$router.push('/checkout');
           })
@@ -126,8 +129,8 @@ export default {
       console.log('continueToShippingMethod() called');
         this.addToOrderDetail();
         this.addToOrder();
-        // this.clearLocalStorage();
-        // this.deleteCartItems(); 
+        this.clearLocalStorage();
+        this.deleteCartItems(); 
   },
   deleteCartItems() {
       axios

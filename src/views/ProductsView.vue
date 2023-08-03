@@ -253,13 +253,16 @@ export default {
       selectedColor: '',
       quantity: 1,
       cartCount: 0,
-
+      loggedIn: false,
     };
   },
   created() {
     this.fetchProduct();
     this.fetchProductSize();
     this.updateCartCount();
+
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    this.loggedIn = isLoggedIn === 'true'; // Convert the string to a boolean value this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   },
   methods: {
     fetchProduct() {
@@ -292,7 +295,8 @@ export default {
         },
     addToCart() {
     const productId = this.$route.params.productId;
-    const cart = {
+    if(this.isLoggedIn){
+        const cart = {
         user_id: '1',
         product_id: productId, // Use "product_id" instead of "productId"
         color_id: this.selectedColor, // Use "color_id" instead of "colorId"
@@ -317,6 +321,36 @@ export default {
         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         cartItems.push(cart);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }else{
+        alert('Please log in to add items to the cart.');
+        // Optionally, redirect to the login page
+        this.$router.push('/login');
+    }
+    // const cart = {
+    //     user_id: '1',
+    //     product_id: productId, // Use "product_id" instead of "productId"
+    //     color_id: this.selectedColor, // Use "color_id" instead of "colorId"
+    //     status: 'billed',
+    //     product_size_id: this.selectedSize,
+    //     quantity: this.quantity,
+    // };
+
+    // // console.log(cart);
+    // axios
+    //     .post('http://localhost:8000/api/carts', cart)
+    //     .then(() => {
+    //     alert('Product added to cart!');
+    //     this.$router.push('/cart');
+    //     })
+    //     .catch(error => {
+    //     console.error('Error saving cart data to the database:', error);
+    //     // Handle the error or show an error message to the user
+    //     });
+
+    //     //save into local storage
+    //     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    //     cartItems.push(cart);
+    //     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     },
     updateCartCount() {
       const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
