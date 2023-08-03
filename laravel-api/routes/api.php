@@ -25,13 +25,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // Route::get('/products', [ProductController::class, 'index']);
 // Route::post('/purchase', [UserController::class, 'purchase']);
+Route::get('/users', [UserController::class, 'index']);
+
 Route::get('/productcategories', [ProductCategoryController::class, 'index']);
+Route::get('/productview/productcategories/{id}', [ProductCategoryController::class, 'show']);   //haven't login
 Route::get('/productcategories/{id}', [ProductCategoryController::class, 'show']);
 
 Route::post('/productcategories', [ProductCategoryController::class, 'store']);

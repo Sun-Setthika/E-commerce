@@ -29,19 +29,56 @@ class OrderDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+        
+    //         return OrderDetail::create([
+    //             'order_id' => $request->order_id,
+    //             'product_id' => $request->product_id,
+    //             'color_id' => $request->color_id,
+    //             'product_size_id' => $request->product_size_id,
+    //             'quantity' => $request->quantity,
+    //             'subtotal' => $request->subtotal,
+    //     ]);
+        
+    // }
+
+    // public function store(Request $request)
+    // {
+    //     $order_detail = new OrderDetail();
+    //     $order_detail->order_id = $request->order_id;
+    //     $order_detail->product_id =  $request->product_id;
+    //     $order_detail->product_size_id =  $request->product_size_id;
+    //     $order_detail->color_id =  $request->color_id;
+    //     $order_detail->quantity =  $request->quantity;
+    //     $order_detail->subtotal=  $request->subtotal;
+
+    //     $order_detail->save();
+    // }
+
     public function store(Request $request)
-    {
-        
-            return OrderDetail::create([
-                'order_id' => $request->order_id,
-                'product_id' => $request->product_id,
-                'color_id' => $request->color_id,
-                'product_size_id' => $request->product_size_id,
-                'quantity' => $request->quantity,
-                'subtotal' => $request->subtotal,
-            ]);
-        
+{
+    // Assuming you want to store the array of objects in a database table
+    // You can loop through the array and create records one by one
+    $data = $request->all();
+
+    foreach ($data as $item) {
+        OrderDetail::create([
+            'product_id' => $item['product_id'],
+            'color_id' => $item['color_id'],
+            'product_size_id' => $item['product_size_id'],
+            'quantity' => $item['quantity'],
+            'subtotal' => $item['subtotal'],
+        ]);
     }
+
+    // Optionally, you can return a response back to the frontend if needed
+    return response()->json(['message' => 'Data saved successfully'], 201);
+}
+
+    
+
+
 
 
     
