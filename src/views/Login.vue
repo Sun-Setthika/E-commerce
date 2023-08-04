@@ -1,80 +1,54 @@
 <script>
   import axios from 'axios';
+import HeaderView from './HeaderView.vue';
 
 export default {
-  name: 'Signup',
-  data() {
-    return {
-      email: '',
-      password: '',
-      users: [],
-    };
-  },
-  created(){
-    this.fetchUser();
-  },
-  methods:{
-    fetchUser(){
-      console.log(this.email,'chem:',this.password);
-      
-        axios.get(`http://localhost:8000/api/users`) 
+    name: 'Signup',
+    components: {
+      HeaderView,
+    },
+    data() {
+        return {
+            email: '',
+            password: '',
+            users: [],
+        };
+    },
+    created() {
+        this.fetchUser();
+    },
+    methods: {
+        fetchUser() {
+            console.log(this.email, 'chem:', this.password);
+            axios.get(`http://localhost:8000/api/users`)
                 .then(response => {
-                  this.users = response.data;
-                    console.log(this.users);
-
-                })
+                this.users = response.data;
+                console.log(this.users);
+            })
                 .catch(error => {
-                    console.error(error);
-                });
-      },
-      handleLoginSuccess() {
-      // Save the login status to Local Storage
-      localStorage.setItem('isLoggedIn', 'true');
-
-      // Redirect the user to the home page or any other page after successful login
-      this.$router.push('/');
-    }
-  },
-  computed: {
-      isTrue(){
-        return this.users.some(
-          (user) => user.password == this.password && user.email == this.email
-        );
-      }
-    }
-  
+                console.error(error);
+            });
+        },
+        handleLoginSuccess() {
+            // Save the login status to Local Storage
+            localStorage.setItem('isLoggedIn', 'true');
+            // Redirect the user to the home page or any other page after successful login
+            this.$router.push('/');
+        }
+    },
+    computed: {
+        isTrue() {
+            return this.users.some((user) => user.password == this.password && user.email == this.email);
+        }
+    },
+    components: { HeaderView }
 };
 
 </script>
 
 <template>
     <div>
-      <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> </a>
-          </div>
-          <div class="icons">  <i class="fa fa-shopping-cart"></i> </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-        <p class="dot">&#183;</p>
-        <a href="/">Home</a>
-        <p class="dot">&#183;</p>
-        <a href="/lips">Lips</a>
-        <p class="dot">&#183;</p>
-        <a href="/sets">Sets</a>
-        <p class="dot">&#183;</p>
-        <a>About Us</a>
-      </div>
-    </div>
+      <HeaderView/>
 
     <!-- content -->
     
@@ -104,6 +78,7 @@ export default {
 
         <div v-else disabled>
               <button type="submit" class="btn">LOGIN</button>
+              <a href="/signup" class="acc"> Create an account </a> 
         </div>
         <!-- <button type="submit" class="btn"> LOGIN </button>
         <a href="/signup" class="acc"> Create an account </a> -->
@@ -147,7 +122,7 @@ export default {
   .content{
     margin-top: 120px;
     padding-top: 100px;
-    height: 507px;
+    height: 550px;
     text-align: center;
     overflow-y: hidden;
   }

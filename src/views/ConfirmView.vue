@@ -1,5 +1,5 @@
 <script>
-
+import axios from 'axios';
 import HeaderView from './HeaderView.vue';
 
 export default {
@@ -7,6 +7,40 @@ export default {
     components:{
         HeaderView,
   },
+  data(){
+    return{
+      latestAddress: [],
+      latestOrder: [],
+    };
+  },
+  created(){
+    this.fetchLatestAddressId();
+    this.fetchLatestOrderId();
+    
+  },
+  methods:{
+    fetchLatestAddressId(){
+            axios.get(`http://localhost:8000/api/carts/customerInfo/lastest-address-id`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.latestAddress = response.data.latestAddressId;
+                    console.log(this.latestAddress);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+    fetchLatestOrderId(){
+            axios.get(`http://localhost:8000/api/orders/latest-order-id`) // Replace this with your actual backend API endpoint to fetch category details
+                .then(response => {
+                    this.latestOrder = response.data.latestOrderId;
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+      },
+    }
+
 };
 </script>
 
@@ -16,7 +50,7 @@ export default {
     <!-- content -->
     <div class="content">
         <div class="order-confirmed">
-            <h4> Order 131217312 Confirmed </h4>
+            <h4> Order {{ latestOrder.id }} Confirmed </h4>
             <hr>
             <p> hello@pariscosmetic.com to me</p>
         </div>
@@ -25,7 +59,7 @@ export default {
                 Paris Cosmetic
             </h3>
             <div class="order-desc">
-                <p> Hi kenny, we're getting your order ready to be shipping. We will nofity you when it has been sent</p>
+                <p> Hi, we're getting your order ready to be shipping. We will nofity you when it has been sent</p>
                 <!-- <router-link to="/cart">
                     <button class="btn"> View your order </button>
                 </router-link> -->
@@ -38,20 +72,20 @@ export default {
             <hr>
             <div class=" summary-details">
               <p> Subtotal </p>
-              <p> - </p>
+              <p> $ {{ latestOrder.subtotal }} </p>
             </div>
+            <!-- <div  class=" summary-details">
+              <p> Total </p>
+              <p> $ {{ latestOrder.total }} </p>
+            </div> -->
             <div  class=" summary-details">
-              <p> Shipping </p>
-              <p> - </p>
-            </div>
-            <div  class=" summary-details">
-              <p>Taxes </p>
-              <p> - </p>
+              <p> Taxes </p>
+              <p> $0.0 </p>
             </div>
             <hr>
             <div class="summary-details">
               <p> Total </p>
-              <p class="total"> </p>
+              <p class="total">  $ {{ latestOrder.total }} </p>
             </div>
            
         </div>
@@ -60,13 +94,13 @@ export default {
             <div>
                 <h3> Shipping Address </h3>
                 <div>
-
+                    {{ latestAddress.address }}
                 </div>
             </div>
             <div>
                 <h3> Billing Address </h3>
                 <div>
-
+                    {{ latestAddress.address }}
                 </div>
             </div>
         </div>
@@ -103,13 +137,14 @@ export default {
     .content{
         margin: auto;
         padding: 15px 30px;
-        height: 600px;
+        height: 700px;
         overflow-y: hidden;
     }
 
     h4{
         margin-bottom: 0;
         font-weight: 700px;
+        font-size: 25px;
     }
 
     .order-confirmed p,

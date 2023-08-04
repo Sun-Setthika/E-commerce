@@ -25,12 +25,14 @@ export default {
         <h1> PARIS COSMETIC </h1>
         <div class="desc">
           <p>
-            Paris Cosmetic is the number one global cosmetics brand and is available in over 129 countries worldwide. Offering more than 200 products, 
-            Paris Cosmetic combines technologically advanced formulas with on-trend expertise to create accessible cosmetics with a cool,
-            urban edge and a spirited style. Maybelline New York is the official sponsor of New York Mercedes-Benz Fashion Week.
-            In 1913, young Chicago chemist Thomas Williams had a dilemma. His older sister, Maybel, was in love with a man who was in love with someone else. Maybel Williams did her best with what was available—she used petroleum jelly on her 
-            lashes and brows to enhance them. Her brother decided to help her increase her allure by adding carbon dust to the petroleum jelly, which darkened her lashes and brows more dramatically. The product worked. In 1915, Maybel got her man and Thomas founded what would become the global industry giant, 
-            Paris Cosmetice, named after the bride and her favourite beauty aid.
+            Paris Cosmetic's objective is to establish itself as the leading global cosmetics brand, renowned for its presence in over 129 countries and 
+            offering a wide range of more than 200 technologically advanced and on-trend cosmetic products. The brand prides itself on creating accessible cosmetics that possess a cool, 
+            urban edge and a spirited style, appealing to customers worldwide.To achieve its objective, Paris Cosmetic has set several key goals. 
+            Firstly, the brand aims to expand its global presence by 
+            increasing market penetration in strategic regions with high growth potential. By establishing a wider distribution network, the brand can reach more customers and further solidify its position as 
+            a global industry giant.
+            Innovation is at the heart of Paris Cosmetic's goals. The brand is committed to investing in research and development to continuously introduce cutting-edge formulas and innovative products. By staying ahead of beauty trends and meeting diverse customer needs, 
+            Paris Cosmetic aims to remain at the forefront of the cosmetics industry. Sustainability is a core value that Paris Cosmetic seeks to uphold. The brand is committed to implementing sustainable practices and eco-friendly packaging solutions, aligning with the increasing demand for environmentally conscious products. By prioritizing sustainability, Paris Cosmetic aims to position itself as a responsible and ethical beauty brand.
           </p>
           <p>
             Two years later, Williams introduced Maybelline Cake Mascara, the first modern eye cosmetic made for everyday use. Initially available only through mail order, 
@@ -41,12 +43,16 @@ export default {
         <h1> MAKE IT HAPPEN </h1>
     </div>
 
+    <div>
+      <img src="../assets/css/images/hero-im-2.jpg">
+      <img src="../assets/css/images/hero-im-1.jpg" class="footer-img">
+    </div>
 
 
   </div>  
-
+    <hr>
     <div class="footer">
-     
+      
       <div class="right-footer">
         <a>CONTACT US</a>
         <i class="fa fa-instagram"></i>
@@ -77,7 +83,7 @@ export default {
     font-size: 60px;
   }
   .content{
-    height: 1500px;
+    height: 1700px;
     overflow: hidden;
   }
 
@@ -94,8 +100,13 @@ export default {
 
  .desc{
   text-align: center;
-  padding: 0 10%;
+  padding: 0 13%;
   font-size: 18px;
+ }
+
+ .footer-img{
+  height: 400px;
+  width: 100%;
  }
 
   

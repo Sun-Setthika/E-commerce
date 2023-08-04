@@ -1,86 +1,67 @@
 <script>
   import axios from 'axios';
+import HeaderView from './HeaderView.vue';
 
 export default {
-  name: 'Signup',
-  data() {
-    return {
-      jsonData: null,
-    };
-  },
-  mounted() {
-    axios
-      .get('http://localhost:3000/api/data')
-      .then(response => {
-        this.jsonData = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+    name: 'Signup',
+    data() {
+       return{
+        name: '',
+        email: '',
+        password: '',
+       }
+    },
+    methods: {
+      addUser(){
+        const User = {
+          name : this.name,
+          email : this.email,
+          password: this.password,
+          role : "customer"
+        };
+        axios
+          .post('http://localhost:8000/api/users/signup', User)
+          .then(() => {
+            console.log("successfully created user");
+          // alert('Information added to customerInfo!');
+          this.$router.push('/login');
+          })
+          .catch(error => {
+          console.error('Error saving cart data to the database:', error);
+          // Handle the error or show an error message to the user
+          });
+      }
+    },
+    components: { HeaderView }
 };
 
 </script>
 
 <template>
     <div>
-      <div class="wrapper">
-      <div class="header">
-        <div class="header-icons">
-          <div class="icons">  <i class="fa fa-bars"></i> </div>
-          <div class="icons">  <i class="fa fa-search"></i> </div>
-        </div>
-        <h1>Paris Cosmetic</h1>
-        <div class="header-icons">
-          <div class="icons"> 
-            <a href="/login"> <i class="fa fa-user"></i> 
-            </a>
-            </div>
-          <div class="icons">
-              <a href="/">
-                <i class="fa fa-shopping-cart"></i>
-              </a> 
-            </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="/welcome">Welcome</a>
-         <p class="dot">&#183;</p> 
-        
-        <a href="/" >Home</a>
-         <p class="dot">&#183;</p>
-        
-        <a  href="/lips">Lips</a> 
-        <p class="dot">&#183;</p>
-       
-        <a href="/sets">Sets</a> 
-        <p class="dot">&#183;</p>
-        
-        <a>About Us</a>
-        
-      </div>
-    </div>
+      <HeaderView/>
 
     <!-- content -->
     <div class="content">
       <h3> SIGNUP </h3>
-      <form>
+      <form @submit.prevent="addUser">
         <div class="login">
           <div class="input-wrapper">
             <label class="username">Username: </label>
-          <input type="text" name="username"  class="input-line"> 
+          <input type="text" name="username"  class="input-line" v-model="name"> 
         </div>
           <div class="input-wrapper">
             <label class="email">Email: </label>
-          <input type="email" name="email" class="input-line"> 
+          <input type="text" name="email" class="input-line" v-model="email"> 
         </div>
         <div class="input-wrapper">
             <label class="password"> Password: </label>
-            <input type="password" name="password"  class="input-line"> 
+            <input type="text" name="password"  class="input-line" v-model="password"> 
         </div>
         </div>
         <button type="submit" class="btn"> SIGNUP </button>
       </form>
+      <a href="/login" class="acc"> Back to login </a>
 
     </div>
     <hr>
@@ -121,7 +102,7 @@ export default {
   .content{
     margin-top: 80px;
     padding-top: 100px;
-    height: 545px;
+    height: 600px;
     text-align: center;
     overflow-y: hidden;
   }
@@ -190,6 +171,7 @@ export default {
   .acc{
     display: block;
     text-decoration: none;
+    color: black;
   }
 
   .acc:hover,

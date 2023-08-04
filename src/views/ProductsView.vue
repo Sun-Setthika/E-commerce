@@ -295,7 +295,7 @@ export default {
         },
     addToCart() {
     const productId = this.$route.params.productId;
-    if(this.isLoggedIn){
+    if(this.loggedIn){
         const cart = {
         user_id: '1',
         product_id: productId, // Use "product_id" instead of "productId"
