@@ -129,11 +129,6 @@
             <div class="bestselling-text">Le set cafe cafe-gourmand</div>
             <div class="bestselling-text">$75,00</div>
         </div>
-        <!-- <div class="bestselling-detail">
-            <img class="bestselling-shampoo" src="../../assets/css/images/set3.jpg">
-            <div class="bestselling-text">La mousse de rouge Hortenese</div>
-            <div class="bestselling-text">$25,00</div>
-        </div> -->
         <div class="bestselling-detail">
             <img class="bestselling-shampoo" src="../assets/css/images/set4.jpg">
             <div class="bestselling-text">La mousse de rouge Rosier</div>
